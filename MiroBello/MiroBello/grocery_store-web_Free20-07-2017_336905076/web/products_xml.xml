@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Products>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Image>images/17.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product><Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Image>images/17.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Image>images/17.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Image>images/17.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Image>images/17.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Image>images/17.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+</Products>
