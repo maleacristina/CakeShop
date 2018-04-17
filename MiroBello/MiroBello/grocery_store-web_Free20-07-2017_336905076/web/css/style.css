@@ -1,9 +1,3 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
 html, body{
     font-size: 100%;
 	font-family: sofia, sans serif;
@@ -300,10 +294,11 @@ ul.dropdown-menu.drp-mnu li a i {
 	color:#FA1818;
 }
 .w3l_banner_nav_right_banner1,.w3l_banner_nav_right_banner,.w3l_banner_nav_right_banner2{
-	min-height:500px;
+	width:100%;
+	/* min-height:500px;	
 	text-align: right;
 	padding:10em 17em 0 0;
-	margin-bottom: 5em;
+	margin-bottom: 5em; */
 }
 .w3l_banner_nav_right_banner{
 	background:url(../images/cake-cover.jpg) no-repeat 0px 0px;
