@@ -10,10 +10,9 @@
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+
 <!-- //js -->
-<link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
@@ -105,80 +104,19 @@
 	}
 </script>
 
+<script>
+	$(function(){
+		$("#header").load("header.html");
+		$("#footer").load("footer.html");
+	});
+</script>
+
+
 </head>
 	
 <body>
 <!-- header -->
-	<div class="top_most_header">
-		
-		<div class="shooping_cart">  
-			<form action="#" method="post" class="last">
-                <fieldset>
-                    <input type="hidden" name="cmd" value="_cart" />
-                    <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="View your cart" class="button" />
-                </fieldset>
-            </form>
-		</div>
-		<div class="user_header">
-			<ul>
-				<li class="dropdown profile_details_drop">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
-					<div class="mega-dropdown-menu">
-						<div class="w3ls_vegetables">
-							<ul class="dropdown-menu drp-mnu">
-								<li><a href="login.html">Login</a></li> 
-								<li><a href="login.html">Sign Up</a></li>
-								<li><a href="login.html">Edit user account</a></li>
-							</ul>
-						</div>                  
-					</div>	
-				</li>
-			</ul>
-		</div>
-		
-		<div class="clearfix"> </div>
-	</div>
-<!-- script-for sticky-nav -->
-	<script>
-	$(document).ready(function() {
-		 var navoffeset=$(".top_most_header").offset().top;
-		 $(window).scroll(function(){
-			var scrollpos=$(window).scrollTop(); 
-			if(scrollpos >=navoffeset){
-				$(".top_most_header").addClass("fixed");
-			}else{
-				$(".top_most_header").removeClass("fixed");
-			}
-		 });
-		 
-	});
-	</script>
-<!-- //script-for sticky-nav -->
-	<div class="logo_products">
-		<div class="container">
-			<div class="store_logo">
-				<img src="Images/logo.png" alt="patiserie logo" width="150px" height="120px" alt="Cofetarie">
-			</div>
-			<div class="store_tags">
-				<ul class="special_items">
-					<li><a href="index.html">Home</a><i>/</i></li>
-					<li><a href="products.html">Products</a><i>/</i></li>
-					<li><a href="contact.html">Contact</a></li>
-					
-					
-				</ul>
-			</div>
-			
-			<div class="store_search_bar">
-			<form action="#" method="post">
-				<input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
-				<input type="submit" value=" ">
-			</form>
-		</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+	<div id="header"></div>
 <!-- //header -->
 	<div class="products-breadcrumb">
 		<div class="container">
@@ -228,68 +166,6 @@
 	</div>
 
 <!-- footer -->
-	<div class="footer">
-		
-			<div class="wthree_footer_copy">
-				<p>© 2018 Mirro Bello. All rights reserved | Design by MirroBello</p>
-			</div>
-		<!-- </div> -->
-	</div>
-<!-- //footer -->
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
-            $(this).toggleClass('open');       
-        }
-    );
-});
-</script>
-<!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-								
-			$().UItoTop({ easingType: 'easeOutQuart' });
-								
-			});
-	</script>
-<!-- //here ends scrolling icon -->
-<script src="js/minicart.js"></script>
-<script>
-		paypal.minicart.render();
-
-		paypal.minicart.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-
-	</script>
+<div id="footer"></div>
 </body>
 </html>
