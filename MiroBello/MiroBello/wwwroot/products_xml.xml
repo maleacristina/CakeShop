@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Products>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Category>Torturi pentru Nunta</Category>
+		<Image>images/38.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product><Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Category>Torturi pentru Nunta</Category>
+		<Image>images/39.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Category>Torturi pentru Copii</Category>
+		<Image>images/45.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Category>Torturi pentru Majorat</Category>
+		<Image>images/40.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Category>Torturi pentru Majorat</Category>
+		<Image>images/46.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+	<Product>
+		<Name>dishwash gel, lemon</Name>
+		<Price>8.00</Price>
+		<Discount>2.00</Discount>
+		<Currency>USD</Currency>
+		<Category>Torturi pentru Majorat</Category>
+		<Image>images/46.png</Image>
+		<Details>aaaaaaaaaaaaaaaaaaaaaa</Details>
+	</Product>
+</Products>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MirroBello Cofetarie</title>
+
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /> 
+<!-- //font-awesome icons -->
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<script>
+	$(function(){
+		$("#header").load("header.html");
+		$("#footer").load("footer.html");
+	});
+	</script>
+
+<!-- start-smoth-scrolling -->
+</head>
+	
+<body>
+<!-- header -->
+	<div id="header"></div>
+<!-- //header -->
+
+<!-- banner -->
+	<div class="banner">
+		
+		<div class="w3l_banner_nav_right">
+<!-- login -->
+		<div class="w3_login">
+			<h3>Sign In & Sign Up</h3>
+			<div class="w3_login_module">
+				<div class="module form-module">
+				  <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+					<div class="tooltip">Click Me</div>
+				  </div>
+				  <div class="form">
+					<h2>Login to your account</h2>
+					<form action="#" method="post">
+					  <input type="text" name="Email" placeholder="Email" required=" ">
+					  <input type="password" name="Parola" placeholder="Parola" required=" ">
+					  <input type="submit" value="Login">
+					</form>
+				  </div>
+				  <div class="form">
+					<h2>Create an account</h2>
+					<form action="#" method="post">
+					  <input type="text" name="Nume" placeholder="Nume" required=" ">
+					  <input type="text" name="Prenume" placeholder="Prenume" required=" ">
+					  <input type="text" name="Adresa" placeholder="Adresa" required=" ">
+					  <input type="text" name="Telefon" placeholder="Telefon" required=" ">
+					  <input type="email" name="Email" placeholder="Email" required=" ">
+					  <input type="password" name="Parola" placeholder="Parola" required=" ">
+                      <input type="password" name="Confirmare parola" placeholder="Confirmare parola" required=" ">					  
+					  <input type="submit" value="Register">
+					</form>
+				  </div>
+				  <div class="cta"><a href="#">Forgot your password?</a></div>
+				</div>
+			</div>
+			<script>
+				$('.toggle').click(function(){
+				  // Switches the Icon
+				  $(this).children('i').toggleClass('fa-pencil');
+				  // Switches the forms  
+				  $('.form').animate({
+					height: "toggle",
+					'padding-top': 'toggle',
+					'padding-bottom': 'toggle',
+					opacity: "toggle"
+				  }, "slow");
+				});
+			</script>
+		</div>
+<!-- //login -->
+		</div>
+		<div class="clearfix"></div>
+	</div>
+<!-- //banner -->
+
+<!-- footer -->
+	<div id="footer"></div>
+</body>
+</html>

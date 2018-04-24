@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<div>
+	<title>MirroBello Cofetarie</title>
+
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- font-awesome icons -->
+	<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /> 
+	<!-- //font-awesome icons -->
+	<!-- js -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<!-- //js -->
+	
+	
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	
+	<script>
+	$(function(){
+		$("#header").load("header.html");
+		$("#footer").load("footer.html");
+	});
+	</script>
+<!-- start-smoth-scrolling -->
+</head>
+	
+<body>
+<!-- header -->
+	
+	<div id="header"></div>
+	
+	
+<!-- //products-breadcrumb -->
+<!-- banner -->
+	<div class="banner">
+		
+		<div class="w3l_banner_nav_right">
+<!-- mail -->
+		<div class="mail">
+			<h3>Contact</h3>
+			<div class="agileinfo_mail_grids">
+				<div class="col-md-4 agileinfo_mail_grid_left">
+					<ul>
+						<li><i class="fa fa-home" aria-hidden="true"></i></li>
+						<li>addrea<span>Str.Anton Pan, nr. 52</span></li>
+					</ul>
+					<ul>
+						<li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+						<li>email<span><a href="mailto:mirrobello@gmail.com">mirrobello@gmail.com</a></span></li>
+					</ul>
+					<ul>
+						<li><i class="fa fa-phone" aria-hidden="true"></i></li>
+						<li>telefon<span>0767 849 834</span></li>
+					</ul>
+				</div>
+				<div class="col-md-8 agileinfo_mail_grid_right">
+					<form action="#" method="post">
+						<div class="col-md-6 wthree_contact_left_grid">
+							<input type="text" name="Nume" value="Nume*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name*';}" required="">
+							<input type="email" name="Email" value="Email*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email*';}" required="">
+						</div>
+						<div class="col-md-6 wthree_contact_left_grid">
+							<input type="text" name="Telefon" value="Telefon*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone*';}" required="">
+							<input type="text" name="Subiect" value="Subiect*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject*';}" required="">
+						</div>
+						<div class="clearfix"> </div>
+						<textarea  name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Mesaj...</textarea>
+						<input type="submit" value="Trimite">
+						<!-- <input type="reset" value="Clear"> -->
+					</form>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+<!-- //mail -->
+		</div>
+		<div class="clearfix"></div>
+	</div>
+<!-- //banner -->
+
+
+<!-- footer -->
+<div id="footer"></div>
+	
+</body>
+</html>
