@@ -16,6 +16,28 @@
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="js/ProductsAPI.js"></script>
+	<script>
+		var productsApi = new ProductsAPI();
+		productsApi.setBaseURL("");
+		var products = productsApi.getAllProducts();
+		products.done(
+			function (response) {
+				for (var i = 0; i < response.length; i++) {
+					//if (i % 4 == 0)
+					//{
+					//    $("#products").append('w3ls_w3l_banner_nav_right_grid1');
+					//}
+					//if ((i % 4 == 0 && i != 0) || i == response.length - 1) {
+					//    $("#products").append('<div class="clearfix"> </div></div>');
+					//}
+					$("#products").append('<div class="col-md-3 w3ls_w3l_banner_left">< div class="hover14 column" ><div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"><div class="agile_top_brand_left_grid_pos">\ <img src="images/offer.png" alt=" " class="img-responsive" /></div><div class="agile_top_brand_left_grid1"><figure><div class="snipcart-item block"><div class="snipcart-thumb"><a href="single.html"><img src="' + response[i].ImageURL + '" alt=" " class="img-responsive" /></a><p>' + response[i].Name + '</p><h4>$' + response[i].Price + ' <span>$4.00</span></h4></div><div class="snipcart-details"><form action="#" method="post"><fieldset><input type="hidden" name="cmd" value="_cart" /><input type="hidden" name="add" value="1" /><input type="hidden" name="business" value=" " /><input type="hidden" name="item_name" value="'+ response[i].Name + '" /><input type="hidden" name="amount" value="' + response[i].Price + '" /><input type="hidden" name="discount_amount" value="1.00" /><input type="hidden" name="currency_code" value="' + response[i].Currency +'" /><input type="hidden" name="return" value=" " /><input type="hidden" name="cancel_return" value=" " /><input type="submit" name="submit" value="Add to cart" class="button" /></fieldset></form></div></div></figure></div></div></div ></div >');
+					
+				}
+			}
+		);
+	</script>
+
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -26,7 +48,7 @@
 </script>
 <!-- start-smoth-scrolling -->
 
-<script>
+<!--<script>
 	function loadDoc(category){
 		var xhttp = new XMLHttpRequest();
 		
@@ -102,7 +124,7 @@
 		}
 		document.getElementById("products").innerHTML = prodFromCategory;
 	}
-</script>
+</script>-->
 
 <script>
 	$(function(){
@@ -156,7 +178,7 @@
 			</nav>
 		</div>
 		<div class="w3l_banner_nav_right">
-			<div id="products" class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_sub">
+			<div id="products" class="w3ls_w3l_banner_nav_right_grid">
 				
 				
 				
@@ -167,5 +189,7 @@
 
 <!-- footer -->
 <div id="footer"></div>
+
+
 </body>
 </html>

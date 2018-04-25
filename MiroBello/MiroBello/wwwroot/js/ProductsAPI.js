@@ -68,7 +68,7 @@
 
     this.getAllProducts = function () {
         var allProductsReq = "/api/products";
-        return doAsyncGet(allStudentsReq);
+        return doAsyncGet(allProductsReq);
     };
     this.getAllCategory = function () {
         var apiURL = "/api/category";
