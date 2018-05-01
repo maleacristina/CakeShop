@@ -1,210 +1,172 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MirroBello cake shop</title>
+    <title>MirroBello cake shop</title>
 
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /> 
-<!-- //font-awesome icons -->
-<!-- js -->
-<script src="js/jquery-1.11.1.min.js"></script>
+    <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="js/jquery-1.11.1.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-2.2.4.js"
-integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    <meta charset="utf-8" />
 
 
-<!-- //js -->
+    <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
 
-<!-- start-smoth-scrolling -->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-<script type="text/javascript" src="js/ProductsAPI.js"></script>
-	<script>
-		var productsApi = new ProductsAPI();
-		productsApi.setBaseURL("");
-		var products = productsApi.getAllProducts();
-		products.done(
-			function (response) {
-				for (var i = 0; i < response.length; i++) {
-					//if (i % 4 == 0)
-					//{
-					//    $("#products").append('w3ls_w3l_banner_nav_right_grid1');
-					//}
-					//if ((i % 4 == 0 && i != 0) || i == response.length - 1) {
-					//    $("#products").append('<div class="clearfix"> </div></div>');
-					//}
-					$("#products").append('<div class="col-md-3 w3ls_w3l_banner_left">< div class="hover14 column" ><div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"><div class="agile_top_brand_left_grid_pos">\ <img src="images/offer.png" alt=" " class="img-responsive" /></div><div class="agile_top_brand_left_grid1"><figure><div class="snipcart-item block"><div class="snipcart-thumb"><a href="single.html"><img src="' + response[i].ImageURL + '" alt=" " class="img-responsive" /></a><p>' + response[i].Name + '</p><h4>$' + response[i].Price + ' <span>$4.00</span></h4></div><div class="snipcart-details"><form action="#" method="post"><fieldset><input type="hidden" name="cmd" value="_cart" /><input type="hidden" name="add" value="1" /><input type="hidden" name="business" value=" " /><input type="hidden" name="item_name" value="'+ response[i].Name + '" /><input type="hidden" name="amount" value="' + response[i].Price + '" /><input type="hidden" name="discount_amount" value="1.00" /><input type="hidden" name="currency_code" value="' + response[i].Currency +'" /><input type="hidden" name="return" value=" " /><input type="hidden" name="cancel_return" value=" " /><input type="submit" name="submit" value="Add to cart" class="button" /></fieldset></form></div></div></figure></div></div></div ></div >');
-					
-				}
-			}
-		);
-	</script>
 
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-	});
-</script>
-<!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
 
-<!--<script>
-	function loadDoc(category){
-		var xhttp = new XMLHttpRequest();
-		
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				myFunction(this,category);
-			}
-		};
-		xhttp.open("GET", "products_xml.xml", true);
-		xhttp.send();
-	}
-	function myFunction(xml,category_name) {
-		var i;
-		var xmlDoc = xml.responseXML;
-		var prodFromCategory;
-		var isFirstTime=true;
-		var x = xmlDoc.getElementsByTagName("Product");
-		for (i = 0; i <x.length; i++) {
-			if(x[i].getElementsByTagName("Category")[0].childNodes[0].nodeValue	== category_name){
-			if((i%4 == 0) && (isFirstTime == false)){
-				prodFromCategory += "<div class=\"clearfix\"></div></div><div class=\"w3ls_w3l_banner_nav_right_grid1\"><div class=\"col-md-3 w3ls_w3l_banner_left\"><div class=\"hover14 column\"><div class=\"agile_top_brand_left_grid w3l_agile_top_brand_left_grid\"><div class=\"agile_top_brand_left_grid1\"><figure><div class=\"snipcart-item block\"><div class=\"snipcart-thumb\"><a href=\"single.html\"><img src=\"" +
-				x[i].getElementsByTagName("Image")[0].childNodes[0].nodeValue +
-				"\" alt=\" \" class=\"img-responsive\" /></a><p>" +
-				x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue +
-				"</p><h4>$" +
-				x[i].getElementsByTagName("Price")[0].childNodes[0].nodeValue +
-				"</h4></div><div class=\"snipcart-details\"><form action=\"#\" method=\"post\"><fieldset><input type=\"hidden\" name=\"cmd\" value=\"_cart\" /><input type=\"hidden\" name=\"add\" value=\"1\" /><input type=\"hidden\" name=\"business\" value=\" \" /><input type=\"hidden\" name=\"item_name\" value=\"" +
-				x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"amount\" value=\"" +
-				x[i].getElementsByTagName("Price")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"discount_amount\" value=\"" +
-				x[i].getElementsByTagName("Discount")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"currency_code\" value=\"" +
-				x[i].getElementsByTagName("Currency")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"return\" value=\" \" /><input type=\"hidden\" name=\"cancel_return\" value=\" \" /><input type=\"submit\" name=\"submit\" value=\"Add to cart\" class=\"button\" /></fieldset></form></div></div></figure></div></div></div></div>";
-			}
-			else if ((i%4 == 0) && (isFirstTime == true)){	
-				prodFromCategory += "<div class=\"w3ls_w3l_banner_nav_right_grid1\"><div class=\"col-md-3 w3ls_w3l_banner_left\"><div class=\"hover14 column\"><div class=\"agile_top_brand_left_grid w3l_agile_top_brand_left_grid\"><div class=\"agile_top_brand_left_grid1\"><figure><div class=\"snipcart-item block\"><div class=\"snipcart-thumb\"><a href=\"single.html\"><img src=\"" +
-				x[i].getElementsByTagName("Image")[0].childNodes[0].nodeValue +
-				"\" alt=\" \" class=\"img-responsive\" /></a><p>" +
-				x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue +
-				"</p><h4>$" +
-				x[i].getElementsByTagName("Price")[0].childNodes[0].nodeValue +
-				"</h4></div><div class=\"snipcart-details\"><form action=\"#\" method=\"post\"><fieldset><input type=\"hidden\" name=\"cmd\" value=\"_cart\" /><input type=\"hidden\" name=\"add\" value=\"1\" /><input type=\"hidden\" name=\"business\" value=\" \" /><input type=\"hidden\" name=\"item_name\" value=\"" +
-				x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"amount\" value=\"" +
-				x[i].getElementsByTagName("Price")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"discount_amount\" value=\"" +
-				x[i].getElementsByTagName("Discount")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"currency_code\" value=\"" +
-				x[i].getElementsByTagName("Currency")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"return\" value=\" \" /><input type=\"hidden\" name=\"cancel_return\" value=\" \" /><input type=\"submit\" name=\"submit\" value=\"Add to cart\" class=\"button\" /></fieldset></form></div></div></figure></div></div></div></div>";
-				isFirstTime=false;
-			}
-			else{
-				prodFromCategory += "<div class=\"col-md-3 w3ls_w3l_banner_left\"><div class=\"hover14 column\"><div class=\"agile_top_brand_left_grid w3l_agile_top_brand_left_grid\"><div class=\"agile_top_brand_left_grid1\"><figure><div class=\"snipcart-item block\"><div class=\"snipcart-thumb\"><a href=\"single.html\"><img src=\"" +
-				x[i].getElementsByTagName("Image")[0].childNodes[0].nodeValue +
-				"\" alt=\" \" class=\"img-responsive\" /></a><p>" +
-				x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue +
-				"</p><h4>$" +
-				x[i].getElementsByTagName("Price")[0].childNodes[0].nodeValue +
-				"</h4></div><div class=\"snipcart-details\"><form action=\"#\" method=\"post\"><fieldset><input type=\"hidden\" name=\"cmd\" value=\"_cart\" /><input type=\"hidden\" name=\"add\" value=\"1\" /><input type=\"hidden\" name=\"business\" value=\" \" /><input type=\"hidden\" name=\"item_name\" value=\"" +
-				x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"amount\" value=\"" +
-				x[i].getElementsByTagName("Price")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"discount_amount\" value=\"" +
-				x[i].getElementsByTagName("Discount")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"currency_code\" value=\"" +
-				x[i].getElementsByTagName("Currency")[0].childNodes[0].nodeValue +
-				"\" /><input type=\"hidden\" name=\"return\" value=\" \" /><input type=\"hidden\" name=\"cancel_return\" value=\" \" /><input type=\"submit\" name=\"submit\" value=\"Add to cart\" class=\"button\" /></fieldset></form></div></div></figure></div></div></div></div>";
-			}
-			}
-		}
-		document.getElementById("products").innerHTML = prodFromCategory;
-	}
-</script>-->
 
-<script>
-	$(function(){
-		$("#header").load("header.html");
-		$("#footer").load("footer.html");
-	});
-</script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
 
 
 </head>
-	
+
 <body>
-<!-- header -->
-	<div id="header"></div>
-<!-- //header -->
-	<div class="products-breadcrumb">
-		<div class="container">
-			<ul>
-				<li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
-				<li>Product</li>
-			</ul>
-		</div>
-	</div>
+    <!-- header -->
+    <div id="header"></div>
+    <!-- //header -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
+                <li>Product</li>
+            </ul>
+        </div>
+    </div>
 
-<!-- banner -->
-	<div class="banner">
-		<div class="w3l_banner_nav_left">
-		
-			<nav class="navbar nav_bottom">
-			 <!-- Brand and toggle get grouped for better mobile display -->
-			  <div class="navbar-header nav_2">
-				  <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				  </button>
-			   </div> 
-			   
-			   <!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-					<ul class="nav navbar-nav nav_1">
-						<li><button id="Torturi pentru Nunta" type="button" onclick="loadDoc('Torturi pentru Nunta')" class="btn btn-large btn-success" style="height:50px;width:380px"><a>Torturi pentru Nunta</a></button></li>
-						<li><button id="Torturi pentru Copii" type="button" onclick="loadDoc('Torturi pentru Copii')" class="btn btn-large btn-success" style="height:50px;width:380px"><a>Torturi pentru Copii</a></button></li>
-						<li><button id="Torturi pentru Majorat" type="button" onclick="loadDoc('Torturi pentru Majorat')" class="btn btn-large btn-success" style="height:50px;width:380px"><a>Torturi pentru Majorat</a></button></li>
-						<li><button id="Prajituri" type="button" onclick="loadDoc('Prajituri')" class="btn btn-large btn-success" style="height:50px;width:380px"><a>Prajituri</a></button></li>
-						<li><button id="Patiserie" type="button" onclick="loadDoc('Patiserie')" class="btn btn-large btn-success" style="height:50px;width:380px"><a>Patiserie</a></button></li>
-						<li><button id="Cupcakes" type="button" onclick="loadDoc('Cupcakes')" class="btn btn-large btn-success" style="height:50px;width:380px"><a>Torturi pentru Nunta</a></button></li>
-					</ul>
-				 </div>
-			</nav>
-		</div>
-		<div class="w3l_banner_nav_right">
-			<div id="products" class="w3ls_w3l_banner_nav_right_grid">
-				
-				
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+    <!-- banner -->
+    <div class="banner">
+        <div class="w3l_banner_nav_left">
 
-<!-- footer -->
-<div id="footer"></div>
+            <nav class="navbar nav_bottom">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                    <ul class="nav navbar-nav nav_1">
+                        <li><button id="Torturi pentru Nunta" type="button" onclick="loadDoc('Torturi pentru Nunta')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
+                        <li><button id="Torturi pentru Copii" type="button" onclick="loadDoc('Torturi pentru Copii')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Copii</button></li>
+                        <li><button id="Torturi pentru Majorat" type="button" onclick="loadDoc('Torturi pentru Majorat')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Majorat</button></li>
+                        <li><button id="Prajituri" type="button" onclick="loadDoc('Prajituri')" class="btn btn-large btn-success" style="height:50px;width:380px">Prajituri</button></li>
+                        <li><button id="Patiserie" type="button" onclick="loadDoc('Patiserie')" class="btn btn-large btn-success" style="height:50px;width:380px">Patiserie</button></li>
+                        <li><button id="Cupcakes" type="button" onclick="loadDoc('Cupcakes')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div id="products" class="w3l_banner_nav_right">
+
+
+
+
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div id="container" name="container">
+
+        <br>
+
+    </div>
+
+    <script type="text/javascript" src="js/ProductsAPI.js"></script>
+    <script>
+        var productsApi = new ProductsAPI();
+        productsApi.setBaseURL("");
+        var products = productsApi.getAllProducts();
+        products.done(
+            function (response) {
+                for (var i = 0; i < response.length; i++) {
+                    $("#container").append('<input class="form-control" value="' + response[i].Name + '"/><br>');
+                    if (i % 3 == 0) {
+                        $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
+                    }
+                    $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
+                                             <div class="hover14 column"> \
+                                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
+                                                    <div class="agile_top_brand_left_grid1"> \
+                                                        <figure> \
+                                                            <div class="snipcart-item block">\
+                                                                <div class="snipcart-thumb"> \
+                                                                    <a href="single.html"> <img src="' + response[i].ImageURL + '" alt=" " class="img-responsive" /></a > \
+                                                                    <p>' + response[i].Name + '</p> \
+                                                                    <h4>$' + i + ' <span>$4.00</span></h4> \
+                                                                </div> \
+                                                                <div class="snipcart-details"> \
+                                                                    <form action="#" method="post"> \
+                                                                        <fieldset>\
+                                                                            <input type="hidden" name="cmd" value="_cart" /> \
+                                                                            <input type="hidden" name="add" value="1" /> \
+                                                                            <input type="hidden" name="business" value= " " /> \
+                                                                            <input type="hidden" name="item_name" value="' + response[i].Name + '" /> \
+                                                                            <input type="hidden" name="amount" value="' + response[i].Price + '" /> \
+                                                                            <input type="hidden" name="discount_amount" value="1.00" /> \
+                                                                            <input type="hidden" name="currency_code" value="' + response[i].Currency + '" /> \
+                                                                            <input type="hidden" name="return" value=" " /> \
+                                                                            <input type="hidden" name="cancel_return" value=" " /> \
+                                                                            <input type="submit" name="submit" value="Add to cart" class="button" />\
+                                                                        </fieldset >\
+                                                                    </form >\
+                                                                </div >\
+                                                            </div > \
+                                                        </figure > \
+                                                    </div > \
+                                                </div > \
+                                                </div > \
+                                            </div > ');
+                    if (i % 3 == 2) {
+                        $("#products").append('<div class="clearfix"> </div></div>');
+                    }
+
+
+                }
+            });
+    </script>
+
+        <!-- footer -->
+    <div id="footer"></div>
 
 
 </body>

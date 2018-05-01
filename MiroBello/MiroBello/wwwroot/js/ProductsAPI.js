@@ -11,6 +11,7 @@
         var fullUrl = baseURL + partialUrl;
         return $.ajax({
             url: fullUrl,
+            async: true,
             headers: {
                 "Authority": authorityToken
             },
@@ -45,7 +46,7 @@
             },
             dataType: "json"
         });
-    }
+    };
 
     var doAsyncPut = function (partialURL, jsonDataToPut) {
         var authorityToken = "";//$.cookie("labman_token");
@@ -92,12 +93,12 @@
     this.deleteProduct = function (productId) {
         var postURL = "/api/product/" + productId;
         return doAsyncDelete(postURL);
-    }
+    };
 
     this.updateProduct = function (productData) {
         var putUrl = "/api/product/" + product.id;
         return doAsyncPut(putUrl, productData);
-    }
+    };
 
 
     ProductsAPI.instance = this;
