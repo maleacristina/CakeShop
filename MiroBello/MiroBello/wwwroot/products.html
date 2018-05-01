@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>MirroBello cake shop</title>
@@ -9,7 +9,7 @@
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
     <!-- //font-awesome icons -->
     <!-- js -->
-    <script src="js/jquery-1.11.1.min.js"></script>
+    <!--<script src="js/jquery-1.11.1.min.js"></script>-->
 
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
@@ -17,12 +17,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />-->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
     <meta charset="utf-8" />
@@ -43,6 +42,62 @@
         });
     </script>
 
+    <script type="text/javascript" src="js\ProductsAPI.js"></script>
+    <script>
+        var productsApi = new ProductsAPI();
+        productsApi.setBaseURL("");
+        var products = productsApi.getAllProducts();
+        
+        products.done(
+            function (response) {
+                for (var i = 0; i < response.length; i++) {
+                    
+                    if (i % 4 == 0) {
+                        $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
+                    }
+                    $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
+                                             <div class="hover14 column"> \
+                                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
+                                                    <div class="agile_top_brand_left_grid1"> \
+                                                        <figure> \
+                                                            <div class="snipcart-item block">\
+                                                                <div class="snipcart-thumb"> \
+                                                                    <a href="single.html"> <img src="Images/38.png" alt=" " class="img-responsive" /></a > \
+                                                                    <p>' + response[i].Name + '</p> \
+                                                                    <h4>$' + i + ' <span>$4.00</span></h4> \
+                                                                </div> \
+                                                                <div class="snipcart-details"> \
+                                                                    <form action="#" method="post"> \
+                                                                        <fieldset>\
+                                                                            <input type="hidden" name="cmd" value="_cart" /> \
+                                                                            <input type="hidden" name="add" value="1" /> \
+                                                                            <input type="hidden" name="business" value= " " /> \
+                                                                            <input type="hidden" name="item_name" value="' + response[i].Name + '" /> \
+                                                                            <input type="hidden" name="amount" value="' + response[i].Price + '" /> \
+                                                                            <input type="hidden" name="discount_amount" value="1.00" /> \
+                                                                            <input type="hidden" name="currency_code" value="' + response[i].Currency + '" /> \
+                                                                            <input type="hidden" name="return" value=" " /> \
+                                                                            <input type="hidden" name="cancel_return" value=" " /> \
+                                                                            <input type="submit" name="submit" value="Add to cart" class="button" />\
+                                                                        </fieldset >\
+                                                                    </form >\
+                                                                </div >\
+                                                            </div > \
+                                                        </figure > \
+                                                    </div > \
+                                                </div > \
+                                                </div > \
+                                            </div > ');
+                    if (i % 4 == 3) {
+                        $("#products").append('<div class="clearfix"> </div></div>');
+                    }
+
+
+                }
+            });
+    </script>
+
+   
 
     <script>
         $(function () {
@@ -105,65 +160,9 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div id="container" name="container">
+   
 
-        <br>
-
-    </div>
-
-    <script type="text/javascript" src="js/ProductsAPI.js"></script>
-    <script>
-        var productsApi = new ProductsAPI();
-        productsApi.setBaseURL("");
-        var products = productsApi.getAllProducts();
-        products.done(
-            function (response) {
-                for (var i = 0; i < response.length; i++) {
-                    $("#container").append('<input class="form-control" value="' + response[i].Name + '"/><br>');
-                    if (i % 3 == 0) {
-                        $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
-                    }
-                    $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
-                                             <div class="hover14 column"> \
-                                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
-                                                    <div class="agile_top_brand_left_grid1"> \
-                                                        <figure> \
-                                                            <div class="snipcart-item block">\
-                                                                <div class="snipcart-thumb"> \
-                                                                    <a href="single.html"> <img src="' + response[i].ImageURL + '" alt=" " class="img-responsive" /></a > \
-                                                                    <p>' + response[i].Name + '</p> \
-                                                                    <h4>$' + i + ' <span>$4.00</span></h4> \
-                                                                </div> \
-                                                                <div class="snipcart-details"> \
-                                                                    <form action="#" method="post"> \
-                                                                        <fieldset>\
-                                                                            <input type="hidden" name="cmd" value="_cart" /> \
-                                                                            <input type="hidden" name="add" value="1" /> \
-                                                                            <input type="hidden" name="business" value= " " /> \
-                                                                            <input type="hidden" name="item_name" value="' + response[i].Name + '" /> \
-                                                                            <input type="hidden" name="amount" value="' + response[i].Price + '" /> \
-                                                                            <input type="hidden" name="discount_amount" value="1.00" /> \
-                                                                            <input type="hidden" name="currency_code" value="' + response[i].Currency + '" /> \
-                                                                            <input type="hidden" name="return" value=" " /> \
-                                                                            <input type="hidden" name="cancel_return" value=" " /> \
-                                                                            <input type="submit" name="submit" value="Add to cart" class="button" />\
-                                                                        </fieldset >\
-                                                                    </form >\
-                                                                </div >\
-                                                            </div > \
-                                                        </figure > \
-                                                    </div > \
-                                                </div > \
-                                                </div > \
-                                            </div > ');
-                    if (i % 3 == 2) {
-                        $("#products").append('<div class="clearfix"> </div></div>');
-                    }
-
-
-                }
-            });
-    </script>
+  
 
         <!-- footer -->
     <div id="footer"></div>

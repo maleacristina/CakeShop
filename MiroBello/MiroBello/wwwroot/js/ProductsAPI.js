@@ -11,7 +11,8 @@
         var fullUrl = baseURL + partialUrl;
         return $.ajax({
             url: fullUrl,
-            async: true,
+            
+            type: "GET",
             headers: {
                 "Authority": authorityToken
             },
