@@ -72,6 +72,11 @@
         var allProductsReq = "/api/products";
         return doAsyncGet(allProductsReq);
     };
+    this.getProduct = function (id) {
+        var productReq = "/api/products/" + id;
+        return doAsyncGet(productReq);
+    };
+
     this.getAllCategory = function () {
         var apiURL = "/api/category";
         return doAsyncGet(apiURL);
