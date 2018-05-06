@@ -7,12 +7,14 @@ namespace MiroBello.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Currency { get; set; }
-        public string Category { get; set; }
         public string ImageURL { get; set; }
         public string Details { get; set; }
+        public string Weight { get; set; }
+        public Nullable<int> CategoryId { get; set; }
+
     }
 }
