@@ -27,6 +27,7 @@ namespace MiroBello
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration["ConnectionString:DefaultConnection"]));
             services.AddMvc();
+            services.AddScoped<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

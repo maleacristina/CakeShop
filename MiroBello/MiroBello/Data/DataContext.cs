@@ -16,6 +16,7 @@ namespace MiroBello.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductsOnBills> ProductsOnBill { get; set; }
         public DbSet<Bill> Bills { get; set; }
+        public DbSet<ClientAccount> ClientAccounts { get; set; }
 
     }
 }
