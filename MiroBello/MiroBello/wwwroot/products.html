@@ -97,6 +97,70 @@
             });
     </script>
 
+    <script>
+        
+        $(document).ready(function () {
+            $("#bs-megadropdown-tabs").on("click", ".js-delete", function () {
+                var remove = document.getElementById("products");
+                while (remove.hasChildNodes()) {
+                    remove.removeChild(remove.firstChild);
+                }
+                var productsApi = new ProductsAPI();
+                productsApi.setBaseURL("");
+                var products = productsApi.getProductsByCategory($(this).attr("data-products-category-id"));
+
+                products.done(
+                    function (response) {
+                        for (var i = 0; i < response.length; i++) {
+
+                            if (i % 4 == 0) {
+                                $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
+                            }
+                            $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
+                                             <div class="hover14 column"> \
+                                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
+                                                    <div class="agile_top_brand_left_grid1"> \
+                                                        <figure> \
+                                                            <div class="snipcart-item block">\
+                                                                <div class="snipcart-thumb"> \
+                                                                    <a href="single.html?'+ response[i].id + '"> <img src="' + response[i].imageURL + '" alt=" " class="img-responsive" /></a > \
+                                                                    <p>' + response[i].name + '</p> \
+                                                                    <h4>$' + response[i].price + ' <span>$4.00</span></h4> \
+                                                                </div> \
+                                                                <div class="snipcart-details"> \
+                                                                    <form action="#" method="post"> \
+                                                                        <fieldset>\
+                                                                            <input type="hidden" name="cmd" value="_cart" /> \
+                                                                            <input type="hidden" name="add" value="1" /> \
+                                                                            <input type="hidden" name="business" value= " " /> \
+                                                                            <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
+                                                                            <input type="hidden" name="amount" value="' + response[i].price + '" /> \
+                                                                            <input type="hidden" name="discount_amount" value="1.00" /> \
+                                                                            <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
+                                                                            <input type="hidden" name="return" value=" " /> \
+                                                                            <input type="hidden" name="cancel_return" value=" " /> \
+                                                                            <input type="submit" name="submit" value="Add to cart" class="button" />\
+                                                                        </fieldset >\
+                                                                    </form >\
+                                                                </div >\
+                                                            </div > \
+                                                        </figure > \
+                                                    </div > \
+                                                </div > \
+                                                </div > \
+                                            </div > ');
+                            if (i % 4 == 3) {
+                                $("#products").append('<div class="clearfix"> </div></div>');
+                            }
+
+
+                        }
+                    });
+                
+            });
+        });
+    </script>
+
    
 
     <script>
@@ -140,12 +204,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                     <ul class="nav navbar-nav nav_1">
-                        <li><button id="Torturi pentru Nunta" type="button" onclick="loadDoc('Torturi pentru Nunta')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
-                        <li><button id="Torturi pentru Copii" type="button" onclick="loadDoc('Torturi pentru Copii')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Copii</button></li>
-                        <li><button id="Torturi pentru Majorat" type="button" onclick="loadDoc('Torturi pentru Majorat')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Majorat</button></li>
-                        <li><button id="Prajituri" type="button" onclick="loadDoc('Prajituri')" class="btn btn-large btn-success" style="height:50px;width:380px">Prajituri</button></li>
-                        <li><button id="Patiserie" type="button" onclick="loadDoc('Patiserie')" class="btn btn-large btn-success" style="height:50px;width:380px">Patiserie</button></li>
-                        <li><button id="Cupcakes" type="button" onclick="loadDoc('Cupcakes')" class="btn btn-large btn-success" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
+                        <li><button data-products-category-id="1" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
+                        <li><button data-products-category-id="2" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Copii</button></li>
+                        <li><button data-products-category-id="3" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Majorat</button></li>
+                        <li><button data-products-category-id="4" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Prajituri</button></li>
+                      
                     </ul>
                 </div>
             </nav>

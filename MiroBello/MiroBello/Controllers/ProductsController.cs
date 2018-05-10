@@ -37,12 +37,12 @@ namespace MiroBello.Controllers
             return products;
         }
 
-        // GET: api/Default/5
+        // GET: api/products/5
         [HttpGet("{id}", Name = "Get")]
-        public Product Get(int id)
+        public IEnumerable<Product> Get(int id)
         {
-            var product = new Product { ProductId = 1, Name = "Tort1", Price = 13.45, Currency = "USD", CategoryId = 2, ImageURL = "Images/45.png", Details = "Este un tort foarte bun pentru evenimentul tau!" };
-            return product;
+            var getProductsByCathegory = _context.Products.Where(p => p.CategoryId == id);
+            return getProductsByCathegory;
         }
         
         // POST: api/Default

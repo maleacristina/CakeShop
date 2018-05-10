@@ -82,8 +82,8 @@
         return doAsyncGet(apiURL);
     };
 
-    this.getProductsInGroup = function (categoryId) {
-        var apiURL = "/api/category/" + categoryId+ "/products";
+    this.getProductsByCategory = function (categoryId) {
+        var apiURL = "/api/products/" + categoryId;
         return doAsyncGet(apiURL);
     };
 
