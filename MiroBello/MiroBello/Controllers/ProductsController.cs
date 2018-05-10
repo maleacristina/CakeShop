@@ -24,7 +24,7 @@ namespace MiroBello.Controllers
         [HttpGet]
         public IEnumerable<Product> GetProducts()
         {
-            //return  new Product[] {
+            //return new Product[] {
             //        new Product{ ProductId=1, Name="Tort1", Price=13.45, Currency="USD", CategoryId=1, ImageURL="Images/45.png", Details="Este un tort foarte bun pentru evenimentul tau!"},
             //        new Product{ ProductId=2, Name="Tort2", Price=100.56, Currency="USD", CategoryId=1, ImageURL="Images/39.png", Details="aaaaaaaaaaaaaaaaaaaaaa!"},
             //        new Product{ ProductId=3, Name="Tort3", Price=32.00, Currency="USD", CategoryId=2, ImageURL="Images/38.png", Details="bbbbbbbbbbbbbbbbbbbbbbbbbbb!"},
@@ -33,7 +33,7 @@ namespace MiroBello.Controllers
             //        new Product{ ProductId=6, Name="Tort3", Price=32.00, Currency="USD", CategoryId=2, ImageURL="Images/38.png", Details="bbbbbbbbbbbbbbbbbbbbbbbbbbb!"}
 
             //};
-            var products = _context.Products.Include(p => p.Category).ToList();
+            var products = _context.Products.ToList();
             return products;
         }
 
