@@ -83,7 +83,7 @@
     };
 
     this.getProductsByCategory = function (categoryId) {
-        var apiURL = "/api/products/" + categoryId;
+        var apiURL = "/api/categories/" + categoryId + "/products";
         return doAsyncGet(apiURL);
     };
 
