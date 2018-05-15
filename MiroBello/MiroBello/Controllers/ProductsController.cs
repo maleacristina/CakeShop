@@ -41,8 +41,9 @@ namespace MiroBello.Controllers
         [HttpGet("{id}", Name = "Get")]
         public IEnumerable<Product> Get(int id)
         {
-            var getProductsByCathegory = _context.Products.Where(p => p.CategoryId == id);
-            return getProductsByCathegory;
+            var product = _context.Products.Where(p => p.ProductId == id);
+            
+            return product;
         }
         
         // POST: api/Default
