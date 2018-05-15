@@ -26,7 +26,7 @@ namespace MiroBello.Controllers
             _config = config;
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         public async Task<IActionResult> Register([FromBody]ClientForRegisterDto clientForRegisterDto)
         {
             clientForRegisterDto.Email = clientForRegisterDto.Email.ToLower();
@@ -47,6 +47,11 @@ namespace MiroBello.Controllers
 
 
             return StatusCode(201);
+        }
+        [HttpGet("login")]
+        public async Task<IActionResult> Login()
+        {
+            return Ok();
         }
 
         [HttpPost("login")]
