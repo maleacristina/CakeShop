@@ -24,6 +24,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />-->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    <script type="text/javascript" src="js/siteCode.js"></script>
     <meta charset="utf-8" />
 
 <!-- start-smoth-scrolling -->
@@ -42,9 +43,8 @@
     <script>
         var productsApi = new ProductsAPI();
         productsApi.setBaseURL("");
-        var currentLocation = window.location.search;
-        var id = currentLocation.substring(1, 2);
-        var products = productsApi.getProduct(id);
+        var prodId = getQueryVariable("id");
+        var products = productsApi.getProduct(prodId);
         products.done(
             function (response) {
                 $("#product").append('<div class="agileinfo_single"> \

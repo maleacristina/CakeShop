@@ -93,16 +93,16 @@
     };
 
     this.addNewProduct = function (product) {
-        var postURL = "/api/product";
+        var postURL = "/api/products";
         return doAsyncPost(postURL, product);
     };
     this.deleteProduct = function (productId) {
-        var postURL = "/api/product/" + productId;
+        var postURL = "/api/products/" + productId;
         return doAsyncDelete(postURL);
     };
 
     this.updateProduct = function (productData) {
-        var putUrl = "/api/product/" + product.id;
+        var putUrl = "/api/products/" + product.id;
         return doAsyncPut(putUrl, productData);
     };
 

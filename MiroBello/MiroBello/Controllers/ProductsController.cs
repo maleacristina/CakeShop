@@ -39,9 +39,9 @@ namespace MiroBello.Controllers
 
         // GET: api/products/5
         [HttpGet("{id}", Name = "Get")]
-        public IEnumerable<Product> Get(int id)
+        public Product Get(int id)
         {
-            var product = _context.Products.Where(p => p.ProductId == id);
+            var product = _context.Products.Where(p => p.ProductId == id).SingleOrDefault();
             
             return product;
         }
