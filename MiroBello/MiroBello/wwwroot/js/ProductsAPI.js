@@ -82,6 +82,11 @@
         return doAsyncGet(apiURL);
     };
 
+    this.getProductsFromCart = function (clientId) {
+        var apiURL = "/api/ClientCarts/" + clientId;
+        return doAsyncGet(apiURL);
+    }
+
     this.getProductsByCategory = function (categoryId) {
         var apiURL = "/api/categories/" + categoryId + "/products";
         return doAsyncGet(apiURL);

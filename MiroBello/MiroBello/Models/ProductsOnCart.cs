@@ -9,10 +9,12 @@ namespace MiroBello.Models
     {
         public int Id { get; set; }
 
-        public int ProductId  { get; set; }
+        public Nullable<int> ProductId  { get; set; }
         public Product Product { get; set; }
 
-        public int ClientCartId { get; set; }
+        public double Quantity { get; set; }
+
+        public Nullable<int> ClientCartId { get; set; }
         public ClientCart ClientCart { get; set; }
     }
 }

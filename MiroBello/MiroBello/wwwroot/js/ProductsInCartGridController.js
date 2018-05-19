@@ -10,7 +10,7 @@
         loadData: function (filter) {
             var deferred = $.Deferred();
             var productsOnCartApi = this.getProductsOnCartAPI();
-            productsOnCartApi.getAllProducts().done(
+            productsOnCartApi.getProductsFromCart(filter).done(
                 function (response) {
                     deferred.resolve(response);
                 });

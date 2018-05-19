@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MiroBello.Migrations
 {
-    public partial class ShoopingCartMigration : Migration
+    public partial class Firstmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,25 +88,27 @@ namespace MiroBello.Migrations
                 name: "ProductsOnCart",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false),
-                    ClientCartId = table.Column<int>(nullable: false),
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClientCartId = table.Column<int>(nullable: true),
+                    ProductId = table.Column<int>(nullable: true),
+                    Quantity = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductsOnCart", x => new { x.ProductId, x.ClientCartId });
+                    table.PrimaryKey("PK_ProductsOnCart", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ProductsOnCart_ClientCart_ClientCartId",
                         column: x => x.ClientCartId,
                         principalTable: "ClientCart",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductsOnCart_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,25 +139,26 @@ namespace MiroBello.Migrations
                 name: "ProductsOnBill",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false),
-                    BillId = table.Column<int>(nullable: false),
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BillId = table.Column<int>(nullable: true),
+                    ProductId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductsOnBill", x => new { x.ProductId, x.BillId });
+                    table.PrimaryKey("PK_ProductsOnBill", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ProductsOnBill_Bills_BillId",
                         column: x => x.BillId,
                         principalTable: "Bills",
                         principalColumn: "BillId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductsOnBill_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -180,9 +183,19 @@ namespace MiroBello.Migrations
                 column: "BillId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductsOnBill_ProductId",
+                table: "ProductsOnBill",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductsOnCart_ClientCartId",
                 table: "ProductsOnCart",
                 column: "ClientCartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductsOnCart_ProductId",
+                table: "ProductsOnCart",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

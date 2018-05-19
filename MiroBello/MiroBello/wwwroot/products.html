@@ -44,57 +44,63 @@
 
     <script type="text/javascript" src="js\ProductsAPI.js"></script>
     <script>
-        var productsApi = new ProductsAPI();
-        productsApi.setBaseURL("");
-        var products = productsApi.getAllProducts();
-        
-        products.done(
-            function (response) {
-                for (var i = 0; i < response.length; i++) {
-                    
-                    if (i % 4 == 0) {
-                        $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
-                    }
-                    $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
-                                             <div class="hover14 column"> \
-                                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
-                                                    <div class="agile_top_brand_left_grid1"> \
-                                                        <figure> \
-                                                            <div class="snipcart-item block">\
-                                                                <div class="snipcart-thumb"> \
-                                                                    <a href="single.html?id='+ response[i].productId + '"> <img src="' + response[i].imageURL +'" alt=" " class="img-responsive" /></a > \
-                                                                    <p>' + response[i].name + '</p> \
-                                                                    <h4>$' + response[i].price + ' <span>$4.00</span></h4> \
-                                                                </div> \
-                                                                <div class="snipcart-details"> \
-                                                                    <form action="#" method="post"> \
-                                                                        <fieldset>\
-                                                                            <input type="hidden" name="cmd" value="_cart" /> \
-                                                                            <input type="hidden" name="add" value="1" /> \
-                                                                            <input type="hidden" name="business" value= " " /> \
-                                                                            <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
-                                                                            <input type="hidden" name="amount" value="' + response[i].price + '" /> \
-                                                                            <input type="hidden" name="discount_amount" value="1.00" /> \
-                                                                            <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
-                                                                            <input type="hidden" name="return" value=" " /> \
-                                                                            <input type="hidden" name="cancel_return" value=" " /> \
-                                                                            <input type="submit" name="submit" value="Add to cart" class="button" />\
-                                                                        </fieldset >\
-                                                                    </form >\
-                                                                </div >\
-                                                            </div > \
-                                                        </figure > \
+        $(document).ready(function () {
+            var remove = document.getElementById("products");
+            while (remove.hasChildNodes()) {
+                remove.removeChild(remove.firstChild);
+            }
+            var productsApi = new ProductsAPI();
+            productsApi.setBaseURL("");
+            var products = productsApi.getAllProducts();
+
+            products.done(
+                function (response) {
+                    for (var i = 0; i < response.length; i++) {
+
+                        if (i % 4 == 0) {
+                            $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
+                        }
+                        $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
+                                                 <div class="hover14 column"> \
+                                                     <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
+                                                        <div class="agile_top_brand_left_grid1"> \
+                                                            <figure> \
+                                                                <div class="snipcart-item block">\
+                                                                    <div class="snipcart-thumb"> \
+                                                                        <a href="single.html?id='+ response[i].productId + '"> <img src="' + response[i].imageURL + '" alt=" " class="img-responsive" /></a > \
+                                                                        <p>' + response[i].name + '</p> \
+                                                                        <h4>$' + response[i].price + ' <span>$4.00</span></h4> \
+                                                                    </div> \
+                                                                    <div class="snipcart-details"> \
+                                                                        <form action="#" method="post"> \
+                                                                            <fieldset>\
+                                                                                <input type="hidden" name="cmd" value="_cart" /> \
+                                                                                <input type="hidden" name="add" value="1" /> \
+                                                                                <input type="hidden" name="business" value= " " /> \
+                                                                                <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
+                                                                                <input type="hidden" name="amount" value="' + response[i].price + '" /> \
+                                                                                <input type="hidden" name="discount_amount" value="1.00" /> \
+                                                                                <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
+                                                                                <input type="hidden" name="return" value=" " /> \
+                                                                                <input type="hidden" name="cancel_return" value=" " /> \
+                                                                                <input type="submit" name="submit" value="Add to cart" class="button" />\
+                                                                            </fieldset >\
+                                                                        </form >\
+                                                                    </div >\
+                                                                </div > \
+                                                            </figure > \
+                                                        </div > \
                                                     </div > \
-                                                </div > \
-                                                </div > \
-                                            </div > ');
-                    if (i % 4 == 3) {
-                        $("#products").append('<div class="clearfix"> </div></div>');
+                                                    </div > \
+                                                </div > ');
+                        if (i % 4 == 3) {
+                            $("#products").append('<div class="clearfix"> </div></div>');
+                        }
+
+
                     }
-
-
-                }
-            });
+                });
+        }
     </script>
 
     <script>
