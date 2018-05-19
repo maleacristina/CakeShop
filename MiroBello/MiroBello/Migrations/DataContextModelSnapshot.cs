@@ -122,30 +122,38 @@ namespace MiroBello.Migrations
 
             modelBuilder.Entity("MiroBello.Models.ProductsOnBills", b =>
                 {
-                    b.Property<int>("ProductId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BillId");
+                    b.Property<int?>("BillId");
 
-                    b.Property<int>("Id");
+                    b.Property<int?>("ProductId");
 
-                    b.HasKey("ProductId", "BillId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BillId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductsOnBill");
                 });
 
             modelBuilder.Entity("MiroBello.Models.ProductsOnCart", b =>
                 {
-                    b.Property<int>("ProductId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ClientCartId");
+                    b.Property<int?>("ClientCartId");
 
-                    b.Property<int>("Id");
+                    b.Property<int?>("ProductId");
 
-                    b.HasKey("ProductId", "ClientCartId");
+                    b.Property<double>("Quantity");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ClientCartId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductsOnCart");
                 });
@@ -175,26 +183,22 @@ namespace MiroBello.Migrations
                 {
                     b.HasOne("MiroBello.Models.Bill", "Bill")
                         .WithMany("Products")
-                        .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BillId");
 
                     b.HasOne("MiroBello.Models.Product", "Product")
                         .WithMany("Bills")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("MiroBello.Models.ProductsOnCart", b =>
                 {
                     b.HasOne("MiroBello.Models.ClientCart", "ClientCart")
                         .WithMany("Products")
-                        .HasForeignKey("ClientCartId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ClientCartId");
 
                     b.HasOne("MiroBello.Models.Product", "Product")
                         .WithMany("Carts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

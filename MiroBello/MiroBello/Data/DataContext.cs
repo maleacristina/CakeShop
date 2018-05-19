@@ -17,15 +17,12 @@ namespace MiroBello.Data
         public DbSet<ProductsOnBills> ProductsOnBill { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<ClientAccount> ClientAccounts { get; set; }
+        public DbSet<ClientCart> ClientCart { get; set; }
         public DbSet<ProductsOnCart> ProductsOnCart { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ProductsOnCart>()
-                .HasKey(pc => new { pc.ProductId, pc.ClientCartId, });
-            modelBuilder.Entity<ProductsOnBills>()
-                .HasKey(pb => new { pb.ProductId, pb.BillId });
-        }
+   
+
+        
 
     }
 }
