@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiroBello.Models;
 using MiroBello.Data;
+using MiroBello.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace MiroBello.Controllers
@@ -34,6 +35,15 @@ namespace MiroBello.Controllers
 
             //};
             var products = _context.Products.ToList();
+            //var productsOnCart = new List<ProductsOnCartViewModel>();
+            //foreach (var product in products)
+            //{
+            //    var productOnCart = new ProductsOnCartViewModel
+            //    {
+            //        Product = product,
+            //        TotalPricePerProduct = product.Price * product.Weight
+            //    };
+            //}
             return products;
         }
 

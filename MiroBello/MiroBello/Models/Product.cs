@@ -17,5 +17,6 @@ namespace MiroBello.Models
         public Category Category { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public ICollection<ProductsOnBills> Bills { get; set; }
+        public virtual ICollection<ClientCart> Carts { get; set; }
     }
 }
