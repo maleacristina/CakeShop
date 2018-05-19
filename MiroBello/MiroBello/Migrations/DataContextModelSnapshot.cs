@@ -24,7 +24,7 @@ namespace MiroBello.Migrations
                     b.Property<int>("BillId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ClientId");
+                    b.Property<int?>("ClientAccountId");
 
                     b.Property<string>("DeliveryType");
 
@@ -38,7 +38,7 @@ namespace MiroBello.Migrations
 
                     b.HasKey("BillId");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientAccountId");
 
                     b.ToTable("Bills");
                 });
@@ -55,34 +55,14 @@ namespace MiroBello.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("MiroBello.Models.Client", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.HasKey("ClientId");
-
-                    b.ToTable("Clients");
-                });
-
             modelBuilder.Entity("MiroBello.Models.ClientAccount", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
+
+                    b.Property<int?>("ClientCartId");
 
                     b.Property<string>("Email");
 
@@ -98,7 +78,22 @@ namespace MiroBello.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientCartId")
+                        .IsUnique();
+
                     b.ToTable("ClientAccounts");
+                });
+
+            modelBuilder.Entity("MiroBello.Models.ClientCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ClientAccoundId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClientCart");
                 });
 
             modelBuilder.Entity("MiroBello.Models.Product", b =>
@@ -118,8 +113,6 @@ namespace MiroBello.Migrations
 
                     b.Property<double>("Price");
 
-                    b.Property<string>("Weight");
-
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
@@ -129,27 +122,46 @@ namespace MiroBello.Migrations
 
             modelBuilder.Entity("MiroBello.Models.ProductsOnBills", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ProductId");
 
                     b.Property<int>("BillId");
 
-                    b.Property<int>("ProductId");
+                    b.Property<int>("Id");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId", "BillId");
 
                     b.HasIndex("BillId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductsOnBill");
                 });
 
+            modelBuilder.Entity("MiroBello.Models.ProductsOnCart", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("ClientCartId");
+
+                    b.Property<int>("Id");
+
+                    b.HasKey("ProductId", "ClientCartId");
+
+                    b.HasIndex("ClientCartId");
+
+                    b.ToTable("ProductsOnCart");
+                });
+
             modelBuilder.Entity("MiroBello.Models.Bill", b =>
                 {
-                    b.HasOne("MiroBello.Models.Client", "Client")
-                        .WithMany("Bills")
-                        .HasForeignKey("ClientId");
+                    b.HasOne("MiroBello.Models.ClientAccount", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientAccountId");
+                });
+
+            modelBuilder.Entity("MiroBello.Models.ClientAccount", b =>
+                {
+                    b.HasOne("MiroBello.Models.ClientCart", "Cart")
+                        .WithOne("Client")
+                        .HasForeignKey("MiroBello.Models.ClientAccount", "ClientCartId");
                 });
 
             modelBuilder.Entity("MiroBello.Models.Product", b =>
@@ -168,6 +180,19 @@ namespace MiroBello.Migrations
 
                     b.HasOne("MiroBello.Models.Product", "Product")
                         .WithMany("Bills")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MiroBello.Models.ProductsOnCart", b =>
+                {
+                    b.HasOne("MiroBello.Models.ClientCart", "ClientCart")
+                        .WithMany("Products")
+                        .HasForeignKey("ClientCartId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MiroBello.Models.Product", "Product")
+                        .WithMany("Carts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

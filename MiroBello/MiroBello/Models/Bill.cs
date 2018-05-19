@@ -16,9 +16,11 @@ namespace MiroBello.Models
         public double TotalPrice { get; set; }
         public string DeliveryType { get; set; }
         public string PaymentModality { get; set; }
-        public Client Client { get; set; }
-        public Nullable<int> ClientId { get; set; }
-        public ICollection<ProductsOnBills> Products { get; set; }
+
+        public ClientAccount Client { get; set; }
+        public Nullable<int> ClientAccountId { get; set; }
+
+        public virtual ICollection<ProductsOnBills> Products { get; set; }
 
     }
 }

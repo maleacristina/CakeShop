@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MiroBello.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class ShoopingCartMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,21 +22,16 @@ namespace MiroBello.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "ClientCart",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Address = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true)
+                    ClientAccoundId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.ClientId);
+                    table.PrimaryKey("PK_ClientCart", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,8 +45,7 @@ namespace MiroBello.Migrations
                     Details = table.Column<string>(nullable: true),
                     ImageURL = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
-                    Weight = table.Column<string>(nullable: true)
+                    Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,12 +59,63 @@ namespace MiroBello.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClientAccounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Address = table.Column<string>(nullable: true),
+                    ClientCartId = table.Column<int>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<byte[]>(nullable: true),
+                    PasswordSalt = table.Column<byte[]>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientAccounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClientAccounts_ClientCart_ClientCartId",
+                        column: x => x.ClientCartId,
+                        principalTable: "ClientCart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductsOnCart",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false),
+                    ClientCartId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductsOnCart", x => new { x.ProductId, x.ClientCartId });
+                    table.ForeignKey(
+                        name: "FK_ProductsOnCart_ClientCart_ClientCartId",
+                        column: x => x.ClientCartId,
+                        principalTable: "ClientCart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductsOnCart_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Bills",
                 columns: table => new
                 {
                     BillId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ClientId = table.Column<int>(nullable: true),
+                    ClientAccountId = table.Column<int>(nullable: true),
                     DeliveryType = table.Column<string>(nullable: true),
                     OrderPlacementDate = table.Column<DateTime>(nullable: false),
                     OrderStatus = table.Column<string>(nullable: true),
@@ -81,10 +126,10 @@ namespace MiroBello.Migrations
                 {
                     table.PrimaryKey("PK_Bills", x => x.BillId);
                     table.ForeignKey(
-                        name: "FK_Bills_Clients_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "ClientId",
+                        name: "FK_Bills_ClientAccounts_ClientAccountId",
+                        column: x => x.ClientAccountId,
+                        principalTable: "ClientAccounts",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -92,14 +137,13 @@ namespace MiroBello.Migrations
                 name: "ProductsOnBill",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<int>(nullable: false),
                     BillId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductsOnBill", x => x.Id);
+                    table.PrimaryKey("PK_ProductsOnBill", x => new { x.ProductId, x.BillId });
                     table.ForeignKey(
                         name: "FK_ProductsOnBill_Bills_BillId",
                         column: x => x.BillId,
@@ -115,9 +159,15 @@ namespace MiroBello.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bills_ClientId",
+                name: "IX_Bills_ClientAccountId",
                 table: "Bills",
-                column: "ClientId");
+                column: "ClientAccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientAccounts_ClientCartId",
+                table: "ClientAccounts",
+                column: "ClientCartId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -130,9 +180,9 @@ namespace MiroBello.Migrations
                 column: "BillId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductsOnBill_ProductId",
-                table: "ProductsOnBill",
-                column: "ProductId");
+                name: "IX_ProductsOnCart_ClientCartId",
+                table: "ProductsOnCart",
+                column: "ClientCartId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -141,16 +191,22 @@ namespace MiroBello.Migrations
                 name: "ProductsOnBill");
 
             migrationBuilder.DropTable(
+                name: "ProductsOnCart");
+
+            migrationBuilder.DropTable(
                 name: "Bills");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "ClientAccounts");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "ClientCart");
         }
     }
 }

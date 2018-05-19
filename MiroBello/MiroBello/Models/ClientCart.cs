@@ -7,9 +7,10 @@ namespace MiroBello.Models
 {
     public class ClientCart
     {
-        public int CartId { get; set; }
+        public int Id { get; set; }
         public ClientAccount Client { get; set; }
         public int? ClientAccoundId { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+
+        public virtual ICollection<ProductsOnCart> Products { get; set; }
     }
 }

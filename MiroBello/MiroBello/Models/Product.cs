@@ -13,10 +13,13 @@ namespace MiroBello.Models
         public string Currency { get; set; }
         public string ImageURL { get; set; }
         public string Details { get; set; }
-        public string Weight { get; set; }
+
+
         public Category Category { get; set; }
         public Nullable<int> CategoryId { get; set; }
-        public ICollection<ProductsOnBills> Bills { get; set; }
-        public virtual ICollection<ClientCart> Carts { get; set; }
+
+        public virtual ICollection<ProductsOnBills> Bills { get; set; }
+
+        public virtual ICollection<ProductsOnCart> Carts { get; set; }
     }
 }

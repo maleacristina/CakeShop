@@ -11,12 +11,21 @@ namespace MiroBello.Data
     {
         public DataContext(DbContextOptions<DataContext>options ):base(options) { }
 
-        public DbSet<Client> Clients { get; set; }
+       
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductsOnBills> ProductsOnBill { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<ClientAccount> ClientAccounts { get; set; }
+        public DbSet<ProductsOnCart> ProductsOnCart { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductsOnCart>()
+                .HasKey(pc => new { pc.ProductId, pc.ClientCartId, });
+            modelBuilder.Entity<ProductsOnBills>()
+                .HasKey(pb => new { pb.ProductId, pb.BillId });
+        }
 
     }
 }
