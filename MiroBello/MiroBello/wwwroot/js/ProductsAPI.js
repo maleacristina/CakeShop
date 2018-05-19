@@ -111,6 +111,24 @@
         return doAsyncPut(putUrl, productData);
     };
 
+    //This is part of bill
+    this.getAllBills = function () {
+        var allBillsReq = "/api/orders";
+        return doAsyncGet(allBillsReq);
+    };
+    this.addNewBill = function (bill) {
+        var postURL = "/api/Orders";
+        return doAsyncPost(postURL, bill);
+    };
+    this.deleteBill = function (billId) {
+        var postURL = "/api/orders/" + billId;
+        return doAsyncDelete(postURL);
+    };
+
+    this.updateBill = function (billData) {
+        var putUrl = "/api/orders/" + billData.id;
+        return doAsyncPut(putUrl, billData);
+    };
 
     ProductsAPI.instance = this;
 }

@@ -22,7 +22,7 @@
         },
 
         updateItem: function (updatingItem) {
-            var studenproductsOnCartApitsApi = this.getProductsOnCartAPI();
+            var productsOnCartApi = this.getProductsOnCartAPI();
             return productsOnCartApi.updateProduct(updatingItem);
         },
 
