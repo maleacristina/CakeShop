@@ -10,7 +10,7 @@
         loadData: function (filter) {
             var deferred = $.Deferred();
             var productsOnCartApi = this.getProductsOnCartAPI();
-            productsOnCartApi.getProductsFromCart(filter).done(
+            productsOnCartApi.getProductsFromCart().done(
                 function (response) {
                     deferred.resolve(response);
                 });
@@ -18,17 +18,17 @@
         },
         insertItem: function (insertingItem) {
             var productsOnCartApi = this.getProductsOnCartAPI();
-            return productsOnCartApi.addNewProduct(insertingItem);
+            return productsOnCartApi.addNewProductInCart(insertingItem);
         },
 
         updateItem: function (updatingItem) {
             var productsOnCartApi = this.getProductsOnCartAPI();
-            return productsOnCartApi.updateProduct(updatingItem);
+            return productsOnCartApi.updateProductOnCart(updatingItem);
         },
 
         deleteItem: function (deletingItem) {
             var productsOnCartApi = this.getProductsOnCartAPI();
-            return productsOnCartApi.deleteProduct(deletingItem);
+            return productsOnCartApi.deleteProductOnCart(deletingItem);
         }
 
 

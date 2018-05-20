@@ -24,76 +24,76 @@ namespace MiroBello.Controllers
 
         // GET: api/ClientCarts
         [HttpGet]
-        public IEnumerable<ClientCart> GetClientCart()
+        public IEnumerable<ProductsOnCartViewModel> GetProducts()
         {
-            return _context.ClientCart;
+
+
+            var productsOnCart = _context.ProductsOnCart.Include(c => c.Product).Where(m => m.ClientCartId == 1).ToList();
+
+
+
+
+            var cart = new List<ProductsOnCartViewModel>();
+            foreach (var productCart in productsOnCart)
+            {
+                var productOnCart = new ProductsOnCartViewModel
+                {
+                    Product = productCart.Product,
+                    Quantity = productCart.Quantity
+                };
+                cart.Add(productOnCart);
+            }
+
+            return cart;
         }
 
         // GET: api/ClientCarts/5
-        [HttpGet("{id}")]   
-        public async Task<IActionResult> GetClientCart([FromRoute] int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClientCart(int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var clientCart = await _context.ClientCart.Include(c => c.Products).SingleOrDefaultAsync(m => m.ClientAccoundId == id);
+            var productsOnCart = _context.ProductsOnCart.Include(c => c.Product).Where(m => m.ClientCartId == id).ToList();
 
-            if (clientCart == null)
+            if (productsOnCart == null)
             {
-                return NotFound();
+                return NotFound(id);
 
             }
-            var products = clientCart.Products.ToList();
 
-            var productsOnCart = new List<ProductsOnCartViewModel>();
-            foreach (var product in products)
+
+            var cart = new List<ProductsOnCartViewModel>();
+            foreach (var productCart in productsOnCart)
             {
                 var productOnCart = new ProductsOnCartViewModel
                 {
-                    Product = product.Product,
-                    TotalPricePerProduct = product.Product.Price * product.Quantity
+                    ProductOnCartId = productCart.Id,
+                    Product = productCart.Product,
+                    Quantity = productCart.Quantity
                 };
-                productsOnCart.Add(productOnCart);
+                cart.Add(productOnCart);
             }
 
-            return Ok(productsOnCart);
+            return Ok(cart);
         }
 
         // PUT: api/ClientCarts/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClientCart([FromRoute] int id, [FromBody] ClientCart clientCart)
+        public ProductsOnCartViewModel PutProductCart(int id, [FromBody] ProductsOnCartViewModel productOnCart)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            if (id != clientCart.Id)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(clientCart).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClientCartExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var shoopingCartDb = _context.ProductsOnCart.Single(p => p.Id == id);
+            shoopingCartDb.Quantity = productOnCart.Quantity;
+            _context.SaveChanges();
 
-            return NoContent();
+
+
+            return productOnCart;
         }
 
         // POST: api/ClientCarts
@@ -120,16 +120,16 @@ namespace MiroBello.Controllers
                 return BadRequest(ModelState);
             }
 
-            var clientCart = await _context.ClientCart.SingleOrDefaultAsync(m => m.Id == id);
-            if (clientCart == null)
+            var productCart = await _context.ProductsOnCart.SingleOrDefaultAsync(m => m.Id == id);
+            if (productCart == null)
             {
                 return NotFound();
             }
 
-            _context.ClientCart.Remove(clientCart);
+            _context.ProductsOnCart.Remove(productCart);
             await _context.SaveChangesAsync();
 
-            return Ok(clientCart);
+            return Ok(productCart);
         }
 
         private bool ClientCartExists(int id)

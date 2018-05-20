@@ -8,7 +8,8 @@ namespace MiroBello.ViewModels
 {
     public class ProductsOnCartViewModel
     {
+        public int ProductOnCartId { get; set; }
         public Product Product { get; set; }
-        public double TotalPricePerProduct { get; set; }
+        public double Quantity { get; set; }
     }
 }

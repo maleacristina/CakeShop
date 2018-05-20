@@ -82,10 +82,8 @@
         return doAsyncGet(apiURL);
     };
 
-    this.getProductsFromCart = function (clientId) {
-        var apiURL = "/api/ClientCarts/" + clientId;
-        return doAsyncGet(apiURL);
-    }
+   
+    
 
     this.getProductsByCategory = function (categoryId) {
         var apiURL = "/api/categories/" + categoryId + "/products";
@@ -108,6 +106,27 @@
 
     this.updateProduct = function (productData) {
         var putUrl = "/api/products/" + product.id;
+        return doAsyncPut(putUrl, productData);
+    };
+
+    //This is part of cart
+    this.getProductsFromCart = function () {
+        var apiURL = "/api/ClientCarts/1";
+        return doAsyncGet(apiURL);
+    };
+
+    this.addNewProductInCart = function (product) {
+    var postURL = "/api/ClientCarts";
+    return doAsyncPost(postURL, product);
+    };
+
+    this.deleteProductOnCart = function (productData) {
+    var postURL = "/api/ClientCarts/" + productData.productOnCartId;
+    return doAsyncDelete(postURL);
+    };
+
+    this.updateProductOnCart = function (productData) {
+        var putUrl = "/api/ClientCarts/" + productData.productOnCartId;
         return doAsyncPut(putUrl, productData);
     };
 

@@ -71,29 +71,38 @@
 						autoload: true,
 						controller: productsInCartGridController,
 						fields: [
-							{ name: "name", title: "Product Name", type: "text", editing: false, width: 200, },
-							{ name: "price", title: "Price/Kg", type: "text", editing: false,width: 100 },
-							{ name: "weight", title: "Quantity", type: "text", sorting: false, width: 100  },
-							{ name: "currency", title: "Currency", type: "text", editing: false, sorting: false,width: 100 },
+							{ name: "product.name", title: "Product Name", type: "text", editing: false, width: 200, },
+							{ name: "product.price", title: "Price/Kg", type: "number", editing: false,width: 100 },
+							{ name: "quantity", title: "Quantity", type: "number", sorting: false, width: 100  },
+                            { name: "product.currency", title: "Currency", type: "text", editing: false, sorting: false, width: 100 },
+                            {
+                            name: "product.price", title: "Total price", type: "number", editing: false, sorting: false, width: 100,
+                            itemTemplate: function (value,item)
+                            {
+                                return (value * item.quantity).toFixed(2);
+                            }
+                            },
+                           // { name: "product.price + totalPricePerProduct", title: "Total ", type: "number", editing: false, sorting: false, width: 100 },
 							{ type: "control" }
 						]
 					}
-				);
+                );
+               
 			</script>
 		  <div class="checkout-right">
-					
+          <div class="col-md-4 checkout-left-basket">
+              <h4>Continue to basket</h4>
+              <ul>
+                  <li>Product1 <i>-</i> <span>15.00 lei </span></li>
+                  <li>Product2 <i>-</i> <span>25.00 lei</span></li>
+                  <li>Product3 <i>-</i> <span>29.00 lei </span></li>
+                  <li>Total Service Charges <i>-</i> <span>15.00 lei</span></li>
+                  <li>Total <i>-</i> <span>84.00 lei</span></li>
+              </ul>
+          </div>
 			</div>
 			<div class="checkout-left">	
-				<div class="col-md-4 checkout-left-basket">
-					<h4>Continue to basket</h4>
-					<ul>
-						<li>Product1 <i>-</i> <span>15.00 lei </span></li>
-						<li>Product2 <i>-</i> <span>25.00 lei</span></li>
-						<li>Product3 <i>-</i> <span>29.00 lei </span></li>
-						<li>Total Service Charges <i>-</i> <span>15.00 lei</span></li>
-						<li>Total <i>-</i> <span>84.00 lei</span></li>
-					</ul>
-				</div>
+				
 				<div class="col-md-8 address_form_agile">
 					  <h4>Adauga noi detali</h4>
 				<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
