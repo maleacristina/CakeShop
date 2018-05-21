@@ -64,8 +64,26 @@ namespace MiroBello.Controllers
         
         // PUT: api/Default/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Product value)
         {
+            var product =_context.ProductsOnCart.SingleOrDefault(p => p.ProductId == id);
+            var addProductOnCart = new ProductsOnCart();
+            if (product != null)
+            {
+                product.Quantity++;
+            }
+            else
+            {
+                addProductOnCart.ClientCartId = 1;
+                addProductOnCart.ProductId = id;
+                addProductOnCart.Quantity = 1;
+                _context.ProductsOnCart.Add(addProductOnCart);
+            }
+
+          
+
+           
+            _context.SaveChanges();
         }
         
         // DELETE: api/ApiWithActions/5

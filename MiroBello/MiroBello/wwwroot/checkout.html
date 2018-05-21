@@ -60,47 +60,47 @@
 			<div id="jsGrid"></div>
 			<script>
 				var grid = $("#jsGrid");
-				$("#jsGrid").jsGrid(
-					{
-						width: "100%",
-						height: "300px",
-						inserting: false,
-						editing: true,
-						sorting: true,
-						paging: true,
-						autoload: true,
-						controller: productsInCartGridController,
+                $("#jsGrid").jsGrid(
+                    {
+                        width: "100%",
+                        height: "300px",
+                        inserting: false,
+                        editing: true,
+                        sorting: true,
+                        paging: true,
+                        autoload: true,
+                        controller: productsInCartGridController,
+                        onRefreshed: function (args) {
+                            var items = args.grid.option("product.price");
+                            var total = { Name: "Total", "Sum": 0, IsTotal: true };
+                            items.forEach(function (item){
+                                total.Sum += item.Sum;
+                            });
+                            var $totalRow = $("<tr>");
+                            args.grid._renderCells($totalRow, total);
+                            args.grid._content.append($totalRow)
+                        },
+
+
 						fields: [
 							{ name: "product.name", title: "Product Name", type: "text", editing: false, width: 200, },
 							{ name: "product.price", title: "Price/Kg", type: "number", editing: false,width: 100 },
 							{ name: "quantity", title: "Quantity", type: "number", sorting: false, width: 100  },
-                            { name: "product.currency", title: "Currency", type: "text", editing: false, sorting: false, width: 100 },
-                            {
-                            name: "product.price", title: "Total price", type: "number", editing: false, sorting: false, width: 100,
-                            itemTemplate: function (value,item)
-                            {
-                                return (value * item.quantity).toFixed(2);
-                            }
-                            },
-                           // { name: "product.price + totalPricePerProduct", title: "Total ", type: "number", editing: false, sorting: false, width: 100 },
+							{ name: "product.currency", title: "Currency", type: "text", editing: false, sorting: false, width: 100 },
+							{
+							name: "product.price", title: "Total price", type: "number", editing: false, sorting: false, width: 100,
+							itemTemplate: function (value,item)
+							{
+								return (value * item.quantity).toFixed(2);
+							}
+							},
+						   // { name: "product.price + totalPricePerProduct", title: "Total ", type: "number", editing: false, sorting: false, width: 100 },
 							{ type: "control" }
 						]
 					}
-                );
-               
+				);
+			   
 			</script>
-		  <div class="checkout-right">
-          <div class="col-md-4 checkout-left-basket">
-              <h4>Continue to basket</h4>
-              <ul>
-                  <li>Product1 <i>-</i> <span>15.00 lei </span></li>
-                  <li>Product2 <i>-</i> <span>25.00 lei</span></li>
-                  <li>Product3 <i>-</i> <span>29.00 lei </span></li>
-                  <li>Total Service Charges <i>-</i> <span>15.00 lei</span></li>
-                  <li>Total <i>-</i> <span>84.00 lei</span></li>
-              </ul>
-          </div>
-			</div>
 			<div class="checkout-left">	
 				
 				<div class="col-md-8 address_form_agile">

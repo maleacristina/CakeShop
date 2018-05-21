@@ -42,6 +42,22 @@
     </script>
 
     <script type="text/javascript" src="js\ProductsAPI.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", "#add-product", ".sterge", function () {
+               
+                var productsApi = new ProductsAPI();
+                productsApi.setBaseURL("");
+                var products = productsApi.addProductToShoppingCart($(this).attr('product-id'));
+                products.done(
+                    function (response) {
+                        alert("The product was added to shooping cart!");
+                    });
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             //var remove = document.getElementById("products");
@@ -59,10 +75,10 @@
                         if (i % 4 == 0) {
                             $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
                         }
-                        $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
+                        $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left" > \
                                                      <div class="hover14 column"> \
                                                          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
-                                                            <div class="agile_top_brand_left_grid1"> \
+                                                            <div class="agile_top_brand_left_grid1 "> \
                                                                 <figure> \
                                                                     <div class="snipcart-item block">\
                                                                         <div class="snipcart-thumb"> \
@@ -70,7 +86,7 @@
                                                                             <p>' + response[i].name + '</p> \
                                                                             <h4>' + response[i].price + ' LEI</h4> \
                                                                         </div> \
-                                                                        <div class="snipcart-details" id="add-product"> \
+                                                                        <div class="snipcart-details" > \
                                                                             <form action="#" method="post"> \
                                                                                 <fieldset>\
                                                                                     <input type="hidden" name="cmd" value="_cart" /> \
@@ -82,9 +98,9 @@
                                                                                     <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
                                                                                     <input type="hidden" name="return" value=" " /> \
                                                                                     <input type="hidden" name="cancel_return" value=" " /> \
-                                                                                    <button button-id="'+ response[i] + '" name="button" class="btn btn-success js-delete">Add to cart</button>\
                                                                                 </fieldset >\
                                                                             </form >\
+                                                                          <button id="add-product" product-id="'+ response[i].productId +'" type="button" class="btn btn-success sterge">Add to cart</button>\
                                                                         </div >\
                                                                     </div > \
                                                                 </figure > \
@@ -145,9 +161,9 @@
                                                                                 <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
                                                                                 <input type="hidden" name="return" value=" " /> \
                                                                                 <input type="hidden" name="cancel_return" value=" " /> \
-                                                                                <button button-id="'+ response[i] + '" name="button" class="btn btn-success js-delete">Add to cart</button>\
                                                                             </fieldset >\
                                                                         </form >\
+                                                                         <button id="add-product" product-id="'+ response[i].productId + '" type="button" class="btn btn-success sterge">Add to cart</button>\
                                                                     </div >\
                                                                 </div > \
                                                             </figure > \
@@ -168,19 +184,7 @@
     </script>
 
 
-    <script>
-        $(document).ready(function () {
-            $("#add-product").on("click", ".js-delete", function () {
-                var productsApi = new ProductsAPI();
-                productsApi.setBaseURL("");
-                var products = productsApi.addProductToShoppingCart($(this).attr("button-id"));
-                products.done(
-                    function (response) {
-                        alert("The product was added to shooping cart!");
-                    });
-            });
-        });
-    </script>
+    
 
     <script>
         $(function () {

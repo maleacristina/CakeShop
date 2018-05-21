@@ -31,7 +31,18 @@
                 "Content-Type": "application/json"
 
             },
-            data: JSON.stringify(jsonDataToPost),
+            data: {
+                json: JSON.stringify({
+                    productId: jsonDataToPost.productId,
+                    name: jsonDataToPost.name,
+                    price: jsonDataToPost.price,
+                    currency: jsonDataToPost.currency,
+                    imageURL: jsonDataToPost.imageURL,
+                    details: jsonDataToPost.details,
+                    categoryId: jsonDataToPost.categoryId
+
+                })
+            },
             dataType: "json"
         });
     };
@@ -115,9 +126,9 @@
         return doAsyncGet(apiURL);
     };
 
-    this.addProductToShoppingCart = function (product) {
-    var postURL = "/api/ClientCarts";
-    return doAsyncPost(postURL, product);
+    this.addProductToShoppingCart = function (productId) {
+        var postURL = "/api/products/" + productId;
+        return doAsyncPut(postURL, productId);
     };
 
     this.deleteProductOnCart = function (productData) {

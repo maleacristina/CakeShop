@@ -24,6 +24,22 @@ body a:hover{
 	text-decoration:none;
 }
 /*-- header --*/
+.jsgrid-cell {
+    overflow: hidden;
+}
+
+.jsgrid-pager {
+    text-align: center;
+}
+
+.total-row {
+    font-weight: bold;
+    background: #f5f5f5;
+}
+
+.total-row td {
+    border-top: 2px solid #efefef;
+}
 .fixed{
 	position: fixed;
 	top: 0;
