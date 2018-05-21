@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-
     <!-- Latest compiled and minified JavaScript -->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
@@ -45,10 +44,10 @@
     <script type="text/javascript" src="js\ProductsAPI.js"></script>
     <script>
         $(document).ready(function () {
-            var remove = document.getElementById("products");
-            while (remove.hasChildNodes()) {
-                remove.removeChild(remove.firstChild);
-            }
+            //var remove = document.getElementById("products");
+            //while (remove.hasChildNodes()) {
+            //    remove.removeChild(remove.firstChild);
+            //}
             var productsApi = new ProductsAPI();
             productsApi.setBaseURL("");
             var products = productsApi.getAllProducts();
@@ -61,38 +60,38 @@
                             $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
                         }
                         $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
-                                                 <div class="hover14 column"> \
-                                                     <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
-                                                        <div class="agile_top_brand_left_grid1"> \
-                                                            <figure> \
-                                                                <div class="snipcart-item block">\
-                                                                    <div class="snipcart-thumb"> \
-                                                                        <a href="single.html?id='+ response[i].productId + '"> <img src="' + response[i].imageURL + '" alt=" " class="img-responsive" /></a > \
-                                                                        <p>' + response[i].name + '</p> \
-                                                                        <h4>$' + response[i].price + ' <span>$4.00</span></h4> \
-                                                                    </div> \
-                                                                    <div class="snipcart-details"> \
-                                                                        <form action="#" method="post"> \
-                                                                            <fieldset>\
-                                                                                <input type="hidden" name="cmd" value="_cart" /> \
-                                                                                <input type="hidden" name="add" value="1" /> \
-                                                                                <input type="hidden" name="business" value= " " /> \
-                                                                                <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
-                                                                                <input type="hidden" name="amount" value="' + response[i].price + '" /> \
-                                                                                <input type="hidden" name="discount_amount" value="1.00" /> \
-                                                                                <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
-                                                                                <input type="hidden" name="return" value=" " /> \
-                                                                                <input type="hidden" name="cancel_return" value=" " /> \
-                                                                                <input type="submit" name="submit" value="Add to cart" class="button" />\
-                                                                            </fieldset >\
-                                                                        </form >\
-                                                                    </div >\
-                                                                </div > \
-                                                            </figure > \
+                                                     <div class="hover14 column"> \
+                                                         <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
+                                                            <div class="agile_top_brand_left_grid1"> \
+                                                                <figure> \
+                                                                    <div class="snipcart-item block">\
+                                                                        <div class="snipcart-thumb"> \
+                                                                            <a href="single.html?id='+ response[i].productId + '"> <img src="' + response[i].imageURL + '" alt=" " class="img-responsive" /></a > \
+                                                                            <p>' + response[i].name + '</p> \
+                                                                            <h4>' + response[i].price + ' LEI</h4> \
+                                                                        </div> \
+                                                                        <div class="snipcart-details" id="add-product"> \
+                                                                            <form action="#" method="post"> \
+                                                                                <fieldset>\
+                                                                                    <input type="hidden" name="cmd" value="_cart" /> \
+                                                                                    <input type="hidden" name="add" value="1" /> \
+                                                                                    <input type="hidden" name="business" value= " " /> \
+                                                                                    <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
+                                                                                    <input type="hidden" name="amount" value="' + response[i].price + '" /> \
+                                                                                    <input type="hidden" name="discount_amount" value="1.00" /> \
+                                                                                    <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
+                                                                                    <input type="hidden" name="return" value=" " /> \
+                                                                                    <input type="hidden" name="cancel_return" value=" " /> \
+                                                                                    <button button-id="'+ response[i] + '" name="button" class="btn btn-success js-delete">Add to cart</button>\
+                                                                                </fieldset >\
+                                                                            </form >\
+                                                                        </div >\
+                                                                    </div > \
+                                                                </figure > \
+                                                            </div > \
                                                         </div > \
-                                                    </div > \
-                                                    </div > \
-                                                </div > ');
+                                                        </div > \
+                                                    </div > ');
                         if (i % 4 == 3) {
                             $("#products").append('<div class="clearfix"> </div></div>');
                         }
@@ -100,11 +99,12 @@
 
                     }
                 });
-        }
+        });
     </script>
 
+
     <script>
-        
+
         $(document).ready(function () {
             $("#bs-megadropdown-tabs").on("click", ".js-delete", function () {
                 var remove = document.getElementById("products");
@@ -123,38 +123,38 @@
                                 $("#products").append('<div class="w3ls_w3l_banner_nav_right_grid1">');
                             }
                             $("#products").append('<div class="col-md-3 w3ls_w3l_banner_left"> \
-                                             <div class="hover14 column"> \
-                                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
-                                                    <div class="agile_top_brand_left_grid1"> \
-                                                        <figure> \
-                                                            <div class="snipcart-item block">\
-                                                                <div class="snipcart-thumb"> \
-                                                                    <a href="single.html?id='+ response[i].productId + '"> <img src="' + response[i].imageURL + '" alt=" " class="img-responsive" /></a > \
-                                                                    <p>' + response[i].name + '</p> \
-                                                                    <h4>$' + response[i].price + ' <span>$4.00</span></h4> \
-                                                                </div> \
-                                                                <div class="snipcart-details"> \
-                                                                    <form action="#" method="post"> \
-                                                                        <fieldset>\
-                                                                            <input type="hidden" name="cmd" value="_cart" /> \
-                                                                            <input type="hidden" name="add" value="1" /> \
-                                                                            <input type="hidden" name="business" value= " " /> \
-                                                                            <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
-                                                                            <input type="hidden" name="amount" value="' + response[i].price + '" /> \
-                                                                            <input type="hidden" name="discount_amount" value="1.00" /> \
-                                                                            <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
-                                                                            <input type="hidden" name="return" value=" " /> \
-                                                                            <input type="hidden" name="cancel_return" value=" " /> \
-                                                                            <input type="submit" name="submit" value="Add to cart" class="button" />\
-                                                                        </fieldset >\
-                                                                    </form >\
-                                                                </div >\
-                                                            </div > \
-                                                        </figure > \
+                                                 <div class="hover14 column"> \
+                                                     <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid"> \
+                                                        <div class="agile_top_brand_left_grid1"> \
+                                                            <figure> \
+                                                                <div class="snipcart-item block">\
+                                                                    <div class="snipcart-thumb"> \
+                                                                        <a href="single.html?id='+ response[i].productId + '"> <img src="' + response[i].imageURL + '" alt=" " class="img-responsive" /></a > \
+                                                                        <p>' + response[i].name + '</p> \
+                                                                        <h4>' + response[i].price + ' LEI</h4> \
+                                                                    </div> \
+                                                                    <div class="snipcart-details"> \
+                                                                        <form action="#" method="post"> \
+                                                                            <fieldset>\
+                                                                                <input type="hidden" name="cmd" value="_cart" /> \
+                                                                                <input type="hidden" name="add" value="1" /> \
+                                                                                <input type="hidden" name="business" value= " " /> \
+                                                                                <input type="hidden" name="item_name" value="' + response[i].name + '" /> \
+                                                                                <input type="hidden" name="amount" value="' + response[i].price + '" /> \
+                                                                                <input type="hidden" name="discount_amount" value="1.00" /> \
+                                                                                <input type="hidden" name="currency_code" value="' + response[i].currency + '" /> \
+                                                                                <input type="hidden" name="return" value=" " /> \
+                                                                                <input type="hidden" name="cancel_return" value=" " /> \
+                                                                                <button button-id="'+ response[i] + '" name="button" class="btn btn-success js-delete">Add to cart</button>\
+                                                                            </fieldset >\
+                                                                        </form >\
+                                                                    </div >\
+                                                                </div > \
+                                                            </figure > \
+                                                        </div > \
                                                     </div > \
-                                                </div > \
-                                                </div > \
-                                            </div > ');
+                                                    </div > \
+                                                </div > ');
                             if (i % 4 == 3) {
                                 $("#products").append('<div class="clearfix"> </div></div>');
                             }
@@ -162,12 +162,25 @@
 
                         }
                     });
-                
+
             });
         });
     </script>
 
-   
+
+    <script>
+        $(document).ready(function () {
+            $("#add-product").on("click", ".js-delete", function () {
+                var productsApi = new ProductsAPI();
+                productsApi.setBaseURL("");
+                var products = productsApi.addProductToShoppingCart($(this).attr("button-id"));
+                products.done(
+                    function (response) {
+                        alert("The product was added to shooping cart!");
+                    });
+            });
+        });
+    </script>
 
     <script>
         $(function () {
@@ -210,10 +223,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                     <ul class="nav navbar-nav nav_1">
-                        <li><button data-products-category-id="4" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
-                        <li><button data-products-category-id="5" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Copii</button></li>
-                        <li><button data-products-category-id="6" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Majorat</button></li>
-                        <li><button data-products-category-id="7" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Prajituri</button></li>
+                        <li><button data-products-category-id="1" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Nunta</button></li>
+                        <li><button data-products-category-id="2" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Copii</button></li>
+                        <li><button data-products-category-id="3" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Torturi pentru Majorat</button></li>
+                        <li><button data-products-category-id="4" type="button"  class="btn btn-large btn-success btn-link js-delete" style="height:50px;width:380px">Prajituri</button></li>
                       
                     </ul>
                 </div>

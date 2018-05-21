@@ -98,17 +98,24 @@ namespace MiroBello.Controllers
 
         // POST: api/ClientCarts
         [HttpPost]
-        public async Task<IActionResult> PostClientCart([FromBody] ClientCart clientCart)
+        public async Task<IActionResult> PostClientCart([FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.ClientCart.Add(clientCart);
+            var addProductOnCart = new ProductsOnCart
+            {
+                ClientCartId = 1,
+                ProductId = product.ProductId,
+                Quantity = 1
+            };
+
+            _context.ProductsOnCart.Add(addProductOnCart);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClientCart", new { id = clientCart.Id }, clientCart);
+            return CreatedAtAction("GetClientCart", new { id = product.ProductId }, product);
         }
 
         // DELETE: api/ClientCarts/5

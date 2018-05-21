@@ -115,7 +115,7 @@
         return doAsyncGet(apiURL);
     };
 
-    this.addNewProductInCart = function (product) {
+    this.addProductToShoppingCart = function (product) {
     var postURL = "/api/ClientCarts";
     return doAsyncPost(postURL, product);
     };
