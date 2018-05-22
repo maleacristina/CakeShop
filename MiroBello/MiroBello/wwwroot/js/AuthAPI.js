@@ -41,6 +41,18 @@
             failFn(response);
         });
     };
+    this.DoRegister = function (registerInfo, successFn, failFn) {
+        var registerUrl = "/api/auth/register";
+        doAsyncPost(registerUrl, registerInfo).done(function (response) {
+
+            var token = response;
+            // $.cookie("labman_token")= token;
+            successFn();
+
+        }).fail(function (response) {
+            failFn(response);
+        });
+    };
     
 
     AuthAPI.instance = this;
