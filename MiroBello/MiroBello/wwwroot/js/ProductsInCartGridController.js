@@ -1,6 +1,6 @@
 ﻿var productsInCartGridController =
     {
-
+        
         getProductsOnCartAPI: function () {
             var retApi = new ProductsAPI();
             var hostName = '';//window.location.protocol + "//" + window.location.host;    

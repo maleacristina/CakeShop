@@ -24,77 +24,64 @@ namespace MiroBello.Controllers
 
         // GET: api/ClientCarts
         [HttpGet]
-        public IEnumerable<ProductsOnCartViewModel> GetProducts()
+        public IEnumerable<ClientCart> GetShoopingCarts()
         {
 
 
-            var productsOnCart = _context.ProductsOnCart.Include(c => c.Product).Where(m => m.ClientCartId == 1).ToList();
+            var shoopingCarts = _context.ClientCart.Include(cart => cart.Products).ToList();
 
 
-
-
-            var cart = new List<ProductsOnCartViewModel>();
-            foreach (var productCart in productsOnCart)
-            {
-                var productOnCart = new ProductsOnCartViewModel
-                {
-                    Product = productCart.Product,
-                    Quantity = productCart.Quantity
-                };
-                cart.Add(productOnCart);
-            }
-
-            return cart;
+            return shoopingCarts;
         }
+
 
         // GET: api/ClientCarts/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetClientCart(int id)
+        public async Task<IActionResult> GetShoopingCartForClient([FromRoute]int id)
         {
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var productsOnCart = _context.ProductsOnCart.Include(c => c.Product).Where(m => m.ClientCartId == id).ToList();
+            var cart = _context.ClientCart.Include(c => c.Products).SingleOrDefault(m => m.ClientAccoundId == id);
 
-            if (productsOnCart == null)
+            foreach (var product in cart.Products)
             {
-                return NotFound(id);
 
+                _context.Products.SingleOrDefault(prod => prod.ProductId == product.ProductId);
             }
-
-
-            var cart = new List<ProductsOnCartViewModel>();
-            foreach (var productCart in productsOnCart)
+            if (cart == null)
             {
-                var productOnCart = new ProductsOnCartViewModel
-                {
-                    ProductOnCartId = productCart.Id,
-                    Product = productCart.Product,
-                    Quantity = productCart.Quantity
-                };
-                cart.Add(productOnCart);
+                return NotFound();
             }
 
             return Ok(cart);
         }
 
-        // PUT: api/ClientCarts/5
-        [HttpPut("{id}")]
-        public ProductsOnCartViewModel PutProductCart(int id, [FromBody] ProductsOnCartViewModel productOnCart)
+        public ClientCart Update(int id, ClientCart cartToUpdate)
         {
-
-
-
-            var shoopingCartDb = _context.ProductsOnCart.Single(p => p.Id == id);
-            shoopingCartDb.Quantity = productOnCart.Quantity;
-            _context.SaveChanges();
-
-
-
-            return productOnCart;
+            ClientCart currentCart = _context.ClientCart.SingleOrDefault(cart => cart.Id == id);
+            currentCart.Products = cartToUpdate.Products;
+            
+            return currentCart;
         }
+
+
+        //// PUT: api/ClientCarts/5
+        //[HttpPut("{id}")]
+        //public ProductsAndShoopingCartViewModel PutProductCart(int id, [FromBody] ProductsAndShoopingCartViewModel productOnCart)
+        //{
+        //    var shoopingCartDb = _context.ProductsOnCart.Single(p => p.Id == id);
+        //    shoopingCartDb.Quantity = productOnCart.Quantity;
+        //    _context.SaveChanges();
+
+
+
+        //    return productOnCart;
+        //}
 
         // POST: api/ClientCarts
         [HttpPost]

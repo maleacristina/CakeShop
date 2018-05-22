@@ -59,6 +59,7 @@
 			<h3>Chec<span>kout</span></h3>
 			<div id="jsGrid"></div>
 			<script>
+
 				var grid = $("#jsGrid");
                 $("#jsGrid").jsGrid(
                     {
@@ -70,31 +71,14 @@
                         paging: true,
                         autoload: true,
                         controller: productsInCartGridController,
-                        onRefreshed: function (args) {
-                            var items = args.grid.option("product.price");
-                            var total = { Name: "Total", "Sum": 0, IsTotal: true };
-                            items.forEach(function (item){
-                                total.Sum += item.Sum;
-                            });
-                            var $totalRow = $("<tr>");
-                            args.grid._renderCells($totalRow, total);
-                            args.grid._content.append($totalRow)
-                        },
-
 
 						fields: [
-							{ name: "product.name", title: "Product Name", type: "text", editing: false, width: 200, },
-							{ name: "product.price", title: "Price/Kg", type: "number", editing: false,width: 100 },
-							{ name: "quantity", title: "Quantity", type: "number", sorting: false, width: 100  },
-							{ name: "product.currency", title: "Currency", type: "text", editing: false, sorting: false, width: 100 },
-							{
-							name: "product.price", title: "Total price", type: "number", editing: false, sorting: false, width: 100,
-							itemTemplate: function (value,item)
-							{
-								return (value * item.quantity).toFixed(2);
-							}
-							},
-						   // { name: "product.price + totalPricePerProduct", title: "Total ", type: "number", editing: false, sorting: false, width: 100 },
+							{ name: "products.product.name", title: "Product Name", type: "text", editing: false, width: 200, },
+                            { name: "products.product.price", title: "Price/Kg", type: "number", editing: false,width: 100 },
+							{ name: "products.quantity", title: "Quantity", type: "number", sorting: false, width: 100  },
+                            { name: "products.product.currency", title: "Currency", type: "text", editing: false, sorting: false, width: 100 },
+							{name: "products.totalPricePerProduct", title: "Total price", type: "number", editing: false, sorting: false, width: 100},
+						  
 							{ type: "control" }
 						]
 					}
