@@ -5,7 +5,7 @@
     }
 
     var baseURL = "localhost";
-
+    var clientId = 1;
     var doAsyncGet = function (partialUrl) {
         var authorityToken = "";//$.cookie("labman_token");
         var fullUrl = baseURL + partialUrl;
@@ -78,6 +78,9 @@
     this.setBaseURL = function (strBaseURL) {
         baseURL = strBaseURL;
     };
+    this.setUserId = function (userId) {
+        clientId = useId;
+    };
 
     this.getAllProducts = function () {
         var allProductsReq = "/api/products";
@@ -122,7 +125,7 @@
 
     //This is part of cart
     this.getProductsFromCart = function () {
-        var apiURL = "/api/ClientCarts/1";
+        var apiURL = "/api/ClientCarts/" + clientId;
         return doAsyncGet(apiURL);
     };
 

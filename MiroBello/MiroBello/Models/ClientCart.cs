@@ -11,6 +11,8 @@ namespace MiroBello.Models
         public ClientAccount Client { get; set; }
         public int? ClientAccoundId { get; set; }
 
+        public double? TotalPriceOfCartForUser { get; set; }
+
         public virtual ICollection<ProductsOnCart> Products { get; set; }
     }
 }

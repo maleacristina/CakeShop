@@ -16,5 +16,7 @@ namespace MiroBello.Models
 
         public Nullable<int> ClientCartId { get; set; }
         public ClientCart ClientCart { get; set; }
+
+        public double? TotalPricePerProduct { get; set; }
     }
 }
