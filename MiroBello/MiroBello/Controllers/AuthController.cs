@@ -26,7 +26,7 @@ namespace MiroBello.Controllers
             _config = config;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]ClientForRegisterDto clientForRegisterDto)
         {
             clientForRegisterDto.Email = clientForRegisterDto.Email.ToLower();
