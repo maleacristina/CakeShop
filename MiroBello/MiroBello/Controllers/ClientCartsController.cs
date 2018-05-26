@@ -37,14 +37,10 @@ namespace MiroBello.Controllers
 
         // GET: api/ClientCarts/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetShoopingCartForClient([FromRoute]int id)
+        public ClientCart GetShoopingCartForClient([FromRoute]int id)
         {
 
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            
 
             var cart = _context.ClientCart.Include(c => c.Products).SingleOrDefault(m => m.ClientAccoundId == id);
 
@@ -53,12 +49,9 @@ namespace MiroBello.Controllers
 
                 _context.Products.SingleOrDefault(prod => prod.ProductId == product.ProductId);
             }
-            if (cart == null)
-            {
-                return NotFound();
-            }
+           
 
-            return Ok(cart);
+            return cart;
         }
 
         public ClientCart Update(int id, ClientCart cartToUpdate)
@@ -70,18 +63,62 @@ namespace MiroBello.Controllers
         }
 
 
-        //// PUT: api/ClientCarts/5
-        //[HttpPut("{id}")]
-        //public ProductsAndShoopingCartViewModel PutProductCart(int id, [FromBody] ProductsAndShoopingCartViewModel productOnCart)
-        //{
-        //    var shoopingCartDb = _context.ProductsOnCart.Single(p => p.Id == id);
-        //    shoopingCartDb.Quantity = productOnCart.Quantity;
-        //    _context.SaveChanges();
+        // PUT: api/ClientCarts/5
+        [HttpPut("{id}")]
+        public void PutProductInCart(int id,int clientId,  [FromBody] ProductsAndShoopingCartViewModel productOnCart)
+        {
+            var clientCart = _context.ClientCart.Include(c => c.Products).SingleOrDefault();
+            
+            if(clientCart != null)
+            {
+                var productExist = clientCart.Products.SingleOrDefault(c => c.ProductId == id);
+                
+                if (productExist != null)
+                {
+                    productExist.Quantity++;
+                    var product = _context.Products.SingleOrDefault(p => p.ProductId == id);
+                    productExist.TotalPricePerProduct = product.Price * productExist.Quantity;
+                }
+                double? totalPrice = 0.0;
+                foreach (var product in clientCart.Products)
+                {
+                    totalPrice += product.TotalPricePerProduct;
+                }
+                clientCart.TotalPriceOfCartForUser = totalPrice;
+                _context.SaveChanges();
+            }
+            else
+            {
+                var product = _context.Products.SingleOrDefault(p => p.ProductId == id);
+                var cartWithNoProductsInIt = new ProductsOnCart
+                {
+                    ClientCartId = clientId,
+                    ProductId = product.ProductId,
+                    Quantity = 1.0,
+                    TotalPricePerProduct = product.Price * 1.0
+
+                };
+
+                var newCartOfClient = new ClientCart
+                {
+                    ClientAccoundId = clientId,
+                    TotalPriceOfCartForUser = cartWithNoProductsInIt.TotalPricePerProduct
+
+                };
+                _context.SaveChanges();
+                //trebuie verificat
+            }
+        }
 
 
 
-        //    return productOnCart;
-        //}
+
+
+
+
+
+
+
 
         // POST: api/ClientCarts
         [HttpPost]

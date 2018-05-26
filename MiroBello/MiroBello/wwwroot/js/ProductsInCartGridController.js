@@ -12,7 +12,7 @@
             var productsOnCartApi = this.getProductsOnCartAPI();
             productsOnCartApi.getProductsFromCart().done(
                 function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.products);
                 });
             return deferred.promise();
         },
