@@ -31,18 +31,7 @@
                 "Content-Type": "application/json"
 
             },
-            data: {
-                json: JSON.stringify({
-                    productId: jsonDataToPost.productId,
-                    name: jsonDataToPost.name,
-                    price: jsonDataToPost.price,
-                    currency: jsonDataToPost.currency,
-                    imageURL: jsonDataToPost.imageURL,
-                    details: jsonDataToPost.details,
-                    categoryId: jsonDataToPost.categoryId
-
-                })
-            },
+            data: JSON.stringify(jsonDataToPost),
             dataType: "json"
         });
     };
@@ -130,7 +119,7 @@
     };
 
     this.addProductToShoppingCart = function (productId) {
-        var postURL = "/api/products/" + productId;
+        var postURL = "/api/ClientCarts/" + productId + "?clientId=" + clientId;
         return doAsyncPut(postURL, productId);
     };
 
