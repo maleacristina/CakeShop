@@ -79,10 +79,7 @@ namespace MiroBello.Controllers
                 addProductOnCart.Quantity = 1;
                 _context.ProductsOnCart.Add(addProductOnCart);
             }
-
-          
-
-           
+            
             _context.SaveChanges();
         }
         

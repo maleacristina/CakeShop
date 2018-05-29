@@ -40,7 +40,7 @@ namespace MiroBello.Controllers
         public ClientCart GetShoopingCartForClient([FromRoute]int id)
         {
 
-            
+
 
             var cart = _context.ClientCart.Include(c => c.Products).SingleOrDefault(m => m.ClientAccoundId == id);
 
@@ -49,7 +49,7 @@ namespace MiroBello.Controllers
 
                 _context.Products.SingleOrDefault(prod => prod.ProductId == product.ProductId);
             }
-           
+
 
             return cart;
         }
@@ -58,33 +58,34 @@ namespace MiroBello.Controllers
         {
             ClientCart currentCart = _context.ClientCart.SingleOrDefault(cart => cart.Id == id);
             currentCart.Products = cartToUpdate.Products;
-            
+
             return currentCart;
         }
 
 
         // PUT: api/ClientCarts/5
         [HttpPut("{id}")]
-        public void PutProductInCart(int id,int clientId,  [FromBody] ProductsAndShoopingCartViewModel productOnCart)
+        public void PutProductInCart(int id, int clientId, [FromBody] ProductsAndShoopingCartViewModel productOnCart)
         {
             var clientCart = _context.ClientCart.Include(c => c.Products).SingleOrDefault();
-            
-            if(clientCart != null)
+
+            if (clientCart != null)
             {
                 var productExist = clientCart.Products.SingleOrDefault(c => c.ProductId == id);
-                
+
                 if (productExist != null)
                 {
                     productExist.Quantity++;
                     var product = _context.Products.SingleOrDefault(p => p.ProductId == id);
                     productExist.TotalPricePerProduct = product.Price * productExist.Quantity;
+
                 }
-                double? totalPrice = 0.0;
+                double? total = 0.0;
                 foreach (var product in clientCart.Products)
                 {
-                    totalPrice += product.TotalPricePerProduct;
+                    total = total + product.TotalPricePerProduct;
                 }
-                clientCart.TotalPriceOfCartForUser = totalPrice;
+                clientCart.TotalPriceOfCartForUser = total;
                 _context.SaveChanges();
             }
             else
@@ -121,8 +122,8 @@ namespace MiroBello.Controllers
 
 
         // POST: api/ClientCarts
-        [HttpPost]
-        public async Task<IActionResult> PostClientCart([FromBody]Product productId)
+        [HttpPost("{id}")]
+        public async Task<IActionResult> PostClientCart(int id,  [FromBody]ProductsOnCart product)
         {
             if (!ModelState.IsValid)
             {
@@ -144,23 +145,25 @@ namespace MiroBello.Controllers
 
         // DELETE: api/ClientCarts/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClientCart([FromRoute] int id)
+        public void DeleteClientCart(int id,int productId)
         {
-            if (!ModelState.IsValid)
+            
+
+            var clientCart =  _context.ClientCart.Include(c => c.Products).SingleOrDefault(c => c.Id == id);
+            
+            var product = _context.ProductsOnCart.SingleOrDefault(p => p.ProductId == productId && p.ClientCartId == id);
+            clientCart.Products.Remove(product);
+
+            double? total=0.0;
+            foreach(var prod in clientCart.Products)
             {
-                return BadRequest(ModelState);
+                total += prod.TotalPricePerProduct;
             }
+            clientCart.TotalPriceOfCartForUser = total;
 
-            var productCart = await _context.ProductsOnCart.SingleOrDefaultAsync(m => m.Id == id);
-            if (productCart == null)
-            {
-                return NotFound();
-            }
+            _context.SaveChangesAsync();
 
-            _context.ProductsOnCart.Remove(productCart);
-            await _context.SaveChangesAsync();
-
-            return Ok(productCart);
+           
         }
 
         private bool ClientCartExists(int id)

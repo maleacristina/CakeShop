@@ -118,19 +118,19 @@
         return doAsyncGet(apiURL);
     };
 
-    this.addProductToShoppingCart = function (productId) {
+    this.addProductToShoppingCart = function (product) {
         var postURL = "/api/ClientCarts/" + productId + "?clientId=" + clientId;
-        return doAsyncPut(postURL, productId);
+        return doAsyncPut(postURL, product);
     };
 
     this.deleteProductOnCart = function (productData) {
-    var postURL = "/api/ClientCarts/" + productData.productOnCartId;
+    var postURL = "/api/ClientCarts/" + clientId+"?productId="+ productData.productOnCartId;
     return doAsyncDelete(postURL);
     };
 
     this.updateProductOnCart = function (productData) {
-        var putUrl = "/api/ClientCarts/" + productData.productOnCartId;
-        return doAsyncPut(putUrl, productData);
+        var putUrl = "/api/ClientCarts/" + clientId /*+"?productId=" + productData.productOnCartId*/;
+        return doAsyncPost(putUrl, productData);
     };
 
     //This is part of bill
