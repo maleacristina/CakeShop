@@ -1,6 +1,7 @@
-﻿var productsInCartGridController =
+﻿
+var productsInCartGridController =
     {
-        
+       
         getProductsOnCartAPI: function () {
             var retApi = new ProductsAPI();
             var hostName = '';//window.location.protocol + "//" + window.location.host;    
@@ -16,6 +17,7 @@
                 });
             return deferred.promise();
         },
+        
         insertItem: function (insertingItem) {
             var productsOnCartApi = this.getProductsOnCartAPI();
             return productsOnCartApi.addNewProductInCart(insertingItem);
@@ -30,6 +32,5 @@
             var productsOnCartApi = this.getProductsOnCartAPI();
             return productsOnCartApi.deleteProductOnCart(deletingItem);
         }
-
 
     }

@@ -6,6 +6,9 @@
 
     var baseURL = "localhost";
     var clientId = 1;
+    var totalPrice = 0;
+   
+
     var doAsyncGet = function (partialUrl) {
         var authorityToken = "";//$.cookie("labman_token");
         var fullUrl = baseURL + partialUrl;
@@ -71,6 +74,10 @@
         clientId = useId;
     };
 
+    this.getTotalPrice = function () {
+        return totalPrice;
+    };
+
     this.getAllProducts = function () {
         var allProductsReq = "/api/products";
         return doAsyncGet(allProductsReq);
@@ -90,6 +97,7 @@
 
     this.getProductsByCategory = function (categoryId) {
         var apiURL = "/api/categories/" + categoryId + "/products";
+
         return doAsyncGet(apiURL);
     };
 
@@ -115,16 +123,18 @@
     //This is part of cart
     this.getProductsFromCart = function () {
         var apiURL = "/api/ClientCarts/" + clientId;
-        return doAsyncGet(apiURL);
+        var x = doAsyncGet(apiURL);
+        //var totalPrice = x.responseJSON.totalPriceOfCartForUser;
+        return x;
     };
 
     this.addProductToShoppingCart = function (product) {
-        var postURL = "/api/ClientCarts/" + productId + "?clientId=" + clientId;
+        var postURL = "/api/ClientCarts/" + product + "?clientId=" + clientId;
         return doAsyncPut(postURL, product);
     };
 
     this.deleteProductOnCart = function (productData) {
-    var postURL = "/api/ClientCarts/" + clientId+"?productId="+ productData.productOnCartId;
+    var postURL = "/api/ClientCarts/" + clientId+"?productId="+ productData.productId;
     return doAsyncDelete(postURL);
     };
 
@@ -139,7 +149,7 @@
         return doAsyncGet(allBillsReq);
     };
     this.addNewBill = function (bill) {
-        var postURL = "/api/Orders";
+        var postURL = "/api/Orders/" + clientId;
         return doAsyncPost(postURL, bill);
     };
     this.deleteBill = function (billId) {
@@ -148,7 +158,7 @@
     };
 
     this.updateBill = function (billData) {
-        var putUrl = "/api/orders/" + billData.id;
+        var putUrl = "/api/orders/" + billData.billId;
         return doAsyncPut(putUrl, billData);
     };
 

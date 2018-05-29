@@ -12,6 +12,9 @@ namespace MiroBello.Models
         public Nullable<int> ProductId { get; set; }
         public Product Product { get; set; }
 
+        public double? TotalPricePerProduct { get; set; }
+        public double Quantity { get; set; }
+
         public Nullable<int> BillId { get; set; }
         public Bill Bill { get; set; }
     }

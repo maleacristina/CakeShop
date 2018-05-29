@@ -50,53 +50,57 @@ namespace MiroBello.Controllers
 
         // PUT: api/Orders/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBill([FromRoute] int id, [FromBody] Bill bill)
+        public Bill PutBill([FromRoute] int id, [FromBody] Bill bill)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            if (id != bill.BillId)
-            {
-                return BadRequest();
-            }
+            var billInDb = _context.Bills.SingleOrDefault(b => b.BillId == id);
+            billInDb.OrderStatus = bill.OrderStatus;
+            _context.SaveChanges();
+            return billInDb;
 
-            _context.Entry(bill).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BillExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         // POST: api/Orders
-        [HttpPost]
-        public async Task<IActionResult> PostBill([FromBody] Bill bill)
+        [HttpPost("{id}")]
+        public void Post(int id, [FromBody]ProductsOnCart products)
         {
-            if (!ModelState.IsValid)
+            var clientCart = _context.ClientCart.Include(c => c.Products).SingleOrDefault(c => c.ClientAccoundId == id);
+            var bills = new Bill
             {
-                return BadRequest(ModelState);
+                ClientAccountId = id,
+                OrderPlacementDate = DateTime.Now,
+                OrderStatus = "Comanda primita",
+                TotalPrice = clientCart.TotalPriceOfCartForUser.Value
+            };
+
+            var billsProduct = new List<ProductsOnBills>();
+            foreach(var productOnCart in clientCart.Products)
+            {
+                var productsOnBill = new ProductsOnBills
+                {
+                    ProductId = productOnCart.ProductId,
+                    Quantity = productOnCart.Quantity,
+                    TotalPricePerProduct = productOnCart.TotalPricePerProduct,
+                    BillId = bills.BillId
+                };
+                billsProduct.Add(productsOnBill);
+
+               
             }
+            bills.Products = billsProduct;
+            _context.Bills.Add(bills);
+            _context.Remove(clientCart);
+           
+            _context.SaveChanges();
 
-            _context.Bills.Add(bill);
-            await _context.SaveChangesAsync();
+            //var productsOnBill = new List<ProductsOnBills>();
+            //foreach(var product in clientCart.Products)
+            //{
+            //    productsOnBill.Add(product)
+            //}
 
-            return CreatedAtAction("GetBill", new { id = bill.BillId }, bill);
         }
+
 
         // DELETE: api/Orders/5
         [HttpDelete("{id}")]

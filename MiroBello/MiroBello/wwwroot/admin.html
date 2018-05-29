@@ -34,7 +34,7 @@
 </script>
 
 <script src="js/ProductsAPI.js"type="text/javascript"></script>   
-<script src="js/ProductsInCartGridController.js" type="text/javascript"></script>
+<script src="js/OrdersInCartGridController.js" type="text/javascript"></script>
 	
 
 
@@ -69,14 +69,15 @@
 						sorting: true,
 						paging: true,
 						autoload: true,
-						controller: productsInCartGridController,
+						controller: ordersInCartGridController,
 						fields: [
-							{ name: "name", title: "Nume", type: "text", editing: false, width: 200, },
-							{ name: "telephone", title: "Telefon", type: "text", editing: false,width: 100 },
-							{ name: "address", title: "Adresa", type: "text", sorting: false, width: 100 },
-							{ name: "date", title: "Data comanda", type: "text", sorting: false, width: 100 },
-							{ name: "totalSum", title: "Total", type: "text", sorting: false, width: 100  },
-							{ name: "statusOrder", title: "Status comanda", type: "text", editing: true, sorting: false,width: 100 }, 
+							{ name: "client.firstName", title: "First Name", type: "text", editing: false, width: 100, },
+							{ name: "client.lastName", title: "Last Name", type: "text", editing: false,width: 100 },
+							{ name: "client.address", title: "Address", type: "text", sorting: false, editing: false, width: 100 },
+							{ name: "client.phoneNumber", title: "Phone Number", type: "text", sorting: false, editing: false,width: 100 },
+							{ name: "orderPlacementDate", title: "Date put order", type: "text", sorting: false, editing: false, width: 100  },
+							{ name: "orderStatus", title: "Status comanda", type: "text",  sorting: false, width: 100 }, 
+							{ name: "totalPrice", title: "Price", type: "text", editing: false, sorting: false, width: 100 }, 
 							{ type: "control" }
 						]
 					}

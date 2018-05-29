@@ -57,10 +57,6 @@ namespace MiroBello.Controllers
         }
         
         // POST: api/Default
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
         
         // PUT: api/Default/5
         [HttpPut("{id}")]
